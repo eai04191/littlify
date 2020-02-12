@@ -1,11 +1,11 @@
 {
     "name": "server",
     "version": "1.0.0",
-    "main": "index.js",
+    "main": "src/index.js",
     "license": "MIT",
     "scripts": {
         "start": "nodemon",
-        "build": "tsc"
+        "build": "tsc src/index.ts"
     },
     "devDependencies": {
         "@types/cookie-parser": "^1.4.2",

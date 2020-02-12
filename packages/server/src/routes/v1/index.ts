@@ -36,7 +36,7 @@ router.get("/callback", (req, res) => {
 
     if (state === null) {
         res.redirect(
-            "http://localhost:1234/?" +
+            `${process.env.CLIENT_URI}/?` +
                 querystring.stringify({
                     error: "state_mismatch"
                 })
@@ -78,7 +78,7 @@ router.get("/callback", (req, res) => {
 
                 // we can also pass the token to the browser to make requests from there
                 res.redirect(
-                    "http://localhost:1234/?" +
+                    `${process.env.CLIENT_URI}/?` +
                         querystring.stringify({
                             access_token: access_token,
                             refresh_token: refresh_token
@@ -86,7 +86,7 @@ router.get("/callback", (req, res) => {
                 );
             } else {
                 res.redirect(
-                    "http://localhost:1234/?" +
+                    `${process.env.CLIENT_URI}/?` +
                         querystring.stringify({
                             error: "invalid_token"
                         })
