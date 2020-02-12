@@ -6,7 +6,7 @@ export default class SpotifyLoginButton extends React.Component {
         return (
             <>
                 <a
-                    href="http://localhost:3000/v1/login?state=hogehoge"
+                    href={`${process.env.SERVER_URI}/v1/login?state=hogehoge`}
                     className={classNames(
                         "text-white",
                         "rounded-full",
