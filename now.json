@@ -8,7 +8,7 @@
     "env": {
         "SPOTIFY_CLIENT_ID": "@spotify_client_id",
         "SPOTIFY_CLIENT_SECRET": "@spotify_client_secret",
-        "SPOTIFY_REDIRECT_URI": "https://littlify.eai.now.sh/v1/callback",
+        "SPOTIFY_REDIRECT_URI": "https://littlify.now.sh/v1/callback",
         "CLIENT_URI": "https://littlify.netlify.com/"
     }
 }
