@@ -40,6 +40,8 @@ class App extends React.Component<Props, State> {
             <>
                 {this.props.qs.access_token ? (
                     this.state.state ? (
+                        <Player state={this.state.state} />
+                    ) : (
                         <>
                             {
                                 //@ts-ignore
@@ -128,10 +130,8 @@ class App extends React.Component<Props, State> {
                                     player.connect();
                                 })
                             }
-                            <Player state={this.state.state} />
+                            <NoState />
                         </>
-                    ) : (
-                        <NoState />
                     )
                 ) : (
                     <>
