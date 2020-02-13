@@ -1,5 +1,5 @@
 import React from "react";
-import tutorial from "../../public/images/spotify-connect.png";
+import tutorial from "../images/spotify-connect.png";
 
 export default class NoStateScreen extends React.Component {
     render() {
