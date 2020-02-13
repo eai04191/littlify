@@ -8,12 +8,6 @@ import Player from "./component/Player";
 import LoginScreen from "./component/LoginScreen";
 import NoState from "./component/NoState";
 
-//@ts-ignore
-import findConfig from "find-config";
-import { config } from "dotenv";
-
-config({ path: findConfig(".env") });
-
 interface Props {
     qs: queryString.ParsedQuery<string>;
 }
