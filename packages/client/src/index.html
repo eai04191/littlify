@@ -3,11 +3,17 @@
     <head>
         <title>Littlify</title>
         <link rel="stylesheet" href="index.css" />
-        <link rel="shortcut icon" href="images/icon-256.png" />
+        <link rel="manifest" href="manifest.webmanifest" />
+        <link rel="shortcut icon" href="images/icons/icon-512x512.png" />
     </head>
     <body>
         <div id="root"></div>
         <script src="index.tsx"></script>
+        <script>
+            if ("serviceWorker" in navigator) {
+                navigator.serviceWorker.register("sw.ts");
+            }
+        </script>
         <script src="https://sdk.scdn.co/spotify-player.js"></script>
     </body>
 </html>
