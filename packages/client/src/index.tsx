@@ -6,7 +6,7 @@ import queryString from "query-string";
 import axios from "axios";
 import Player from "./component/Player";
 import LoginScreen from "./component/LoginScreen";
-import NoState from "./component/NoState";
+import NoStateScreen from "./component/NoStateScreen";
 
 interface Props {
     qs: queryString.ParsedQuery<string>;
@@ -126,7 +126,7 @@ class App extends React.Component<Props, State> {
                     this.state.state ? (
                         <Player state={this.state.state} />
                     ) : (
-                        <NoState />
+                        <NoStateScreen />
                     )
                 ) : (
                     <LoginScreen />
