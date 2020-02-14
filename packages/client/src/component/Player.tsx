@@ -82,11 +82,15 @@ export default class Player extends React.Component<Props, State> {
         }, interval);
     }
 
+    private deepCopy<T>(src: T): T {
+        return JSON.parse(JSON.stringify(src)) as T;
+    }
+
     render() {
         const state = this.props.state;
         const track = state.track_window.current_track;
-        const nextTracks = state.track_window.next_tracks;
-        const previousTracks = state.track_window.previous_tracks;
+        const nextTracks = this.deepCopy(state.track_window.next_tracks);
+        const previousTracks = this.deepCopy(state.track_window.previous_tracks);
         previousTracks.reverse().pop();
         nextTracks.reverse().pop();
         return (
