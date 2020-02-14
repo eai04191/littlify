@@ -8,9 +8,11 @@ import {
     faPause,
     faSlidersH
 } from "@fortawesome/free-solid-svg-icons";
+import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 
 import MiniTrack from "./MiniTrack";
 import SpotifyURILink from "./SpotifyURILink";
+import ExternalLink from "./ExternalLink";
 
 interface Props {
     state: SpotifyState.RootObject;
@@ -19,6 +21,7 @@ interface Props {
 export default class Player extends React.Component<Props, {}> {
     render() {
         const state = this.props.state;
+        const track = state.track_window.current_track;
         const nextTracks = state.track_window.next_tracks;
         const previousTracks = state.track_window.previous_tracks;
         previousTracks.reverse().pop();
@@ -63,7 +66,7 @@ export default class Player extends React.Component<Props, {}> {
                                 "flex-1",
                                 "flex",
                                 "items-center",
-                                "p-8",
+                                "pl-8",
                                 "text-gray-900",
                                 "bg-white"
                             )}
@@ -173,6 +176,19 @@ export default class Player extends React.Component<Props, {}> {
                             >
                                 <FontAwesomeIcon icon={faSlidersH} />
                             </div>
+                            <ExternalLink
+                                className={classNames(
+                                    "flex-none",
+                                    "py-3",
+                                    "px-8",
+                                    "hover:text-gray-500"
+                                )}
+                                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
+                                    `${track.name}\r\n${track.artists[0].name} - ${track.album.name}\r\nhttps://open.spotify.com/track/${track.id}`
+                                )}`}
+                            >
+                                <FontAwesomeIcon icon={faTwitter} />
+                            </ExternalLink>
                         </div>
                     </div>
                     <div
