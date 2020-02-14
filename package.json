@@ -9,8 +9,10 @@
     "scripts": {
         "client:start": "yarn workspace client start",
         "client:build": "yarn workspace client build",
+        "client:watch": "yarn workspace client watch",
         "server:start": "yarn workspace server start",
-        "server:build": "yarn workspace server build"
+        "server:build": "yarn workspace server build",
+        "watch": "run-p server:start client:watch"
     },
     "workspaces": [
         "packages/*"
