@@ -10,6 +10,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import MiniTrack from "./MiniTrack";
+import SpotifyURILink from "./SpotifyURILink";
 
 interface Props {
     state: SpotifyState.RootObject;
@@ -17,20 +18,22 @@ interface Props {
 
 export default class Player extends React.Component<Props, {}> {
     render() {
-        const title = this.props.state.track_window.current_track.name;
-        const jacket = this.props.state.track_window.current_track.album
-            .images[0].url;
-        const artist = this.props.state.track_window.current_track.artists[0]
-            .name;
-        const album = this.props.state.track_window.current_track.album.name;
-        const nextTracks = this.props.state.track_window.next_tracks;
-        const previousTracks = this.props.state.track_window.previous_tracks;
+        const state = this.props.state;
+        const nextTracks = state.track_window.next_tracks;
+        const previousTracks = state.track_window.previous_tracks;
         previousTracks.reverse().pop();
+        nextTracks.reverse().pop();
         return (
             <>
                 <div className={classNames("flex")}>
                     <div className={classNames("flex-grow-0", "flex-shrink-0")}>
-                        <img src={jacket} className={classNames("h-screen")} />
+                        <img
+                            src={
+                                state.track_window.current_track.album.images[2]
+                                    .url
+                            }
+                            className={classNames("h-screen")}
+                        />
                     </div>
                     <div
                         className={classNames(
@@ -51,8 +54,42 @@ export default class Player extends React.Component<Props, {}> {
                             )}
                         >
                             <div className={classNames("font-medium")}>
-                                <p className={classNames("text-2xl")}>
-                                    {title}
+                                <SpotifyURILink
+                                    className={classNames("text-2xl")}
+                                    uri={state.track_window.current_track.uri}
+                                >
+                                    {state.track_window.current_track.name}
+                                </SpotifyURILink>
+                                <p
+                                    className={classNames(
+                                        "mt-1",
+                                        "text-sm",
+                                        "text-gray-700"
+                                    )}
+                                >
+                                    <SpotifyURILink
+                                        uri={
+                                            state.track_window.current_track
+                                                .artists[0].uri
+                                        }
+                                    >
+                                        {
+                                            state.track_window.current_track
+                                                .artists[0].name
+                                        }
+                                    </SpotifyURILink>
+                                    {" - "}
+                                    <SpotifyURILink
+                                        uri={
+                                            state.track_window.current_track
+                                                .album.uri
+                                        }
+                                    >
+                                        {
+                                            state.track_window.current_track
+                                                .album.name
+                                        }
+                                    </SpotifyURILink>
                                 </p>
                                 <p
                                     className={classNames(
@@ -61,7 +98,12 @@ export default class Player extends React.Component<Props, {}> {
                                         "text-gray-700"
                                     )}
                                 >
-                                    {artist} - {album}
+                                    <SpotifyURILink uri={state.context.uri}>
+                                        {
+                                            state.context.metadata
+                                                .context_description
+                                        }
+                                    </SpotifyURILink>
                                 </p>
                             </div>
                         </div>
@@ -113,7 +155,12 @@ export default class Player extends React.Component<Props, {}> {
                         </div>
                     </div>
                     <div className={classNames("flex", "flex-col", "w-1/4")}>
-                        {previousTracks.concat(nextTracks).map(track => {
+                        <p>前のトラック</p>
+                        {previousTracks.map(track => {
+                            return <MiniTrack track={track} />;
+                        })}
+                        <p>次のトラック</p>
+                        {nextTracks.map(track => {
                             return <MiniTrack track={track} />;
                         })}
                     </div>

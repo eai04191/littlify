@@ -16,7 +16,7 @@ export default class MiniTrack extends React.Component<Props, {}> {
                 <div className={classNames("ml-2", "truncate", "w-full")}>
                     <div className={classNames()}>{this.props.track.name}</div>
                     <div className={classNames("text-sm", "text-gray-700")}>
-                        {this.props.track.artists[0].name} -
+                        {this.props.track.artists[0].name} -{" "}
                         {this.props.track.album.name}
                     </div>
                 </div>
