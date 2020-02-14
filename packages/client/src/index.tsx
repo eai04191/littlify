@@ -27,7 +27,7 @@ class App extends React.Component<Props, State> {
             state: null,
             access_token: this.props.qs.access_token?.toString() || null,
             refresh_token: this.props.qs.refresh_token?.toString() || null,
-            player: null,
+            player: null
         };
     }
 
@@ -144,7 +144,7 @@ class App extends React.Component<Props, State> {
 
             // Connect to the player!
             player.connect();
-            this.setState({player});
+            this.setState({ player });
 
             // for debugging
             (window as any).player = player;
@@ -161,7 +161,10 @@ class App extends React.Component<Props, State> {
 
                 {this.state.access_token ? (
                     this.state.state ? (
-                        <Player state={this.state.state} player={this.state.player}/>
+                        <Player
+                            state={this.state.state}
+                            player={this.state.player}
+                        />
                     ) : (
                         <NoStateScreen />
                     )

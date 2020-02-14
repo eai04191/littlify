@@ -144,7 +144,9 @@ export default class Player extends React.Component<Props, {}> {
                                     "hover:text-gray-500"
                                 )}
                                 onClick={async () => {
-                                    const currentState = await this.props.player?.getCurrentState() || {};
+                                    const currentState =
+                                        (await this.props.player?.getCurrentState()) ||
+                                        {};
                                     if (currentState.position < 5000) {
                                         this.props.player?.previousTrack();
                                     }
