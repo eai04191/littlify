@@ -25,18 +25,33 @@ export default class Player extends React.Component<Props, {}> {
         nextTracks.reverse().pop();
         return (
             <>
-                <div className={classNames("flex")}>
-                    <div className={classNames("flex-grow-0", "flex-shrink-0")}>
+                <div className={classNames("flex", "border-gray-400")}>
+                    <div
+                        className={classNames(
+                            "jucket-column",
+                            "flex",
+                            "h-screen",
+                            "flex-grow-0",
+                            "flex-shrink-0",
+                            "border-r"
+                        )}
+                    >
                         <img
                             src={
                                 state.track_window.current_track.album.images[2]
                                     .url
                             }
-                            className={classNames("h-screen")}
+                            className={classNames(
+                                "self-center",
+                                "h-screen",
+                                "max-w-screen-1/2",
+                                "max-h-screen-w-1/2"
+                            )}
                         />
                     </div>
                     <div
                         className={classNames(
+                            "track-column",
                             "flex-1",
                             "flex",
                             "flex-col",
@@ -109,11 +124,13 @@ export default class Player extends React.Component<Props, {}> {
                         </div>
                         <div
                             className={classNames(
+                                "controll-column",
                                 "flex",
                                 "items-center",
                                 "text-center",
                                 "select-none",
-                                "bg-gray-200"
+                                "bg-gray-200",
+                                "border-t"
                             )}
                         >
                             <div
@@ -132,7 +149,11 @@ export default class Player extends React.Component<Props, {}> {
                                     "hover:text-gray-500"
                                 )}
                             >
-                                <FontAwesomeIcon icon={faPlay} />
+                                {state.paused ? (
+                                    <FontAwesomeIcon icon={faPlay} />
+                                ) : (
+                                    <FontAwesomeIcon icon={faPause} />
+                                )}
                             </div>
                             <div
                                 className={classNames(
@@ -154,7 +175,15 @@ export default class Player extends React.Component<Props, {}> {
                             </div>
                         </div>
                     </div>
-                    <div className={classNames("flex", "flex-col", "w-1/4")}>
+                    <div
+                        className={classNames(
+                            "queue-column",
+                            "flex",
+                            "flex-col",
+                            "w-1/4",
+                            "border-l"
+                        )}
+                    >
                         <p>前のトラック</p>
                         {previousTracks.map(track => {
                             return <MiniTrack track={track} />;
