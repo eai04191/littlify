@@ -19,7 +19,69 @@ interface Props {
     player: any;
 }
 
-export default class Player extends React.Component<Props, {}> {
+interface State {
+    calculatedPosition: number;
+    updatedPosition: number;
+    onSeek: boolean;
+}
+
+export default class Player extends React.Component<Props, State> {
+    private intervalHandler?: any;
+
+    constructor(props: Props) {
+        super(props);
+
+        this.state = {
+            calculatedPosition: 0,
+            updatedPosition: 0,
+            onSeek: false,
+        };
+    }
+
+    public componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<{}>, snapshot?: any) {
+        if (this.props.state.paused || this.state.onSeek) {
+            this.stopSeekBar();
+        } else if (!this.props.state.paused && !this.intervalHandler) {
+            this.startSeekBar();
+        } else {
+            // たぶん30秒ごとに飛んでくるstateで補正
+            // REF: https://github.com/spotify/web-playback-sdk/issues/86
+            let {calculatedPosition, updatedPosition} = this.state;
+            if (this.props.state.position !== updatedPosition) {
+                updatedPosition = this.props.state.position;
+                calculatedPosition = this.props.state.position;
+                this.setState({
+                    calculatedPosition,
+                    updatedPosition,
+                });
+            }
+        }
+    }
+
+    private stopSeekBar() {
+        clearInterval(this.intervalHandler);
+        this.intervalHandler = undefined;
+    }
+
+    private startSeekBar() {
+        const interval = 500;
+
+        this.intervalHandler = setInterval(() => {
+            let {calculatedPosition, updatedPosition} = this.state;
+            if (this.props.state.position !== updatedPosition) {
+                updatedPosition = this.props.state.position;
+                calculatedPosition = this.props.state.position;
+            } else {
+                calculatedPosition += interval;
+            }
+
+            this.setState({
+                calculatedPosition,
+                updatedPosition,
+            });
+        }, interval);
+    }
+
     render() {
         const state = this.props.state;
         const track = state.track_window.current_track;
@@ -126,6 +188,29 @@ export default class Player extends React.Component<Props, {}> {
                                 </p>
                             </div>
                         </div>
+                        <input
+                            id={"player-seekbar"}
+                            type="range"
+                            min="0"
+                            max={state.duration}
+                            value={this.state.calculatedPosition}
+                            onMouseDown={(e) => {
+                                this.setState({
+                                    onSeek: true,
+                                });
+                            }}
+                            onChange={(e) => {
+                                this.setState({
+                                    calculatedPosition: parseInt(e.currentTarget.value, 10),
+                                });
+                            }}
+                            onMouseUp={(e) => {
+                                this.props.player?.seek(e.currentTarget.value);
+                                this.setState({
+                                    onSeek: false,
+                                })
+                            }}
+                        />
                         <div
                             className={classNames(
                                 "controll-column",
