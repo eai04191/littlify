@@ -13,6 +13,7 @@ import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import MiniTrack from "./MiniTrack";
 import SpotifyURILink from "./SpotifyURILink";
 import ExternalLink from "./ExternalLink";
+import {Event} from "./Config";
 
 interface Props {
     state: SpotifyState.RootObject;
@@ -173,6 +174,39 @@ export default class Player extends React.Component<Props, {}> {
                                     "py-3",
                                     "hover:text-gray-500"
                                 )}
+                                onClick={() => {
+                                    const w = window.open("/config");
+                                    if (w) {
+                                        w.onmessage = (event) => {
+                                            if (event.data.type !== "littlify_config") {
+                                                return;
+                                            }
+                                            console.log("onmessage:", event.data);
+                                            switch (event.data.event) {
+                                                case Event.OPEN_SYN:
+                                                    let config = {};
+                                                    try {
+                                                        config = JSON.parse(localStorage.config);
+                                                    } catch (e) {
+                                                        console.error(e);
+                                                    }
+
+                                                    w.postMessage({
+                                                        type: "littlify_config",
+                                                        event: Event.OPEN_ACK,
+                                                        payload: config || {},
+                                                    }, window.origin);
+                                                    break;
+                                                case Event.CLOSE_SYN:
+                                                    localStorage.config = JSON.stringify(event.data.payload);
+                                                    w.postMessage({
+                                                        type: "littlify_config",
+                                                        event: Event.CLOSE_ACK,
+                                                    }, window.origin);
+                                            }
+                                        };
+                                    }
+                                }}
                             >
                                 <FontAwesomeIcon icon={faSlidersH} />
                             </div>

@@ -7,6 +7,7 @@ import axios from "axios";
 import Player from "./component/Player";
 import LoginScreen from "./component/LoginScreen";
 import NoStateScreen from "./component/NoStateScreen";
+import Config, {State as ConfigState} from "./component/Config";
 
 interface Props {
     qs: queryString.ParsedQuery<string>;
@@ -31,6 +32,20 @@ class App extends React.Component<Props, State> {
 
     componentWillMount = () => {
         console.log(this.props.qs);
+
+        if (Object.keys(this.props.qs).length === 0) {
+            if (localStorage.config) {
+                let config: ConfigState = {} as any;
+                try {
+                    config = JSON.parse(localStorage.config);
+                } catch (e) {
+                    console.error(e);
+                }
+                if (config.auto_auth) {
+                    location.href = `${process.env.SERVER_URI}/v1/login?state=hogehoge`;
+                }
+            }
+        }
     };
 
     handleStateChange = (state: any) => {
@@ -170,6 +185,15 @@ class App extends React.Component<Props, State> {
 ReactDOM.render(
     <Router>
         <Route
+            path={"/config"}
+            exact={true}
+            render={props => (
+                <Config {...props}/>
+            )}
+        />
+        <Route
+            path={"/"}
+            exact={true}
             render={props => (
                 <App qs={queryString.parse(props.location.search)} />
             )}
