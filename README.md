@@ -1,5 +1,5 @@
 <div align="center">
-<img src="https://raw.githubusercontent.com/eai04191/littlify/doc/logo-256.png" width="150px" draggable="false"><br>
+<img src="https://raw.githubusercontent.com/eai04191/littlify/doc/logo-256.png" width="150px"><br>
 
 # Littlify
 
@@ -10,14 +10,14 @@ Little Spotify Controller
 ## Motivation
 
 <div align="center">
-<img src="https://raw.githubusercontent.com/eai04191/littlify/doc/screenshot.png" draggable="false">
+<img src="https://raw.githubusercontent.com/eai04191/littlify/doc/screenshot.png">
 </div>
 
 VSCodeなど使っている間に、今流れている曲が気になってSpotifyクライアントを見に行くことが多かった。
 
 見に行くのがめんどくさいので何を流しているかを常に表示したかったが、Spotifyクライアントのウィンドウは一定以下の多きさにならないので、邪魔だった。
 
-そういうわけでコンパクトな今流れている曲を教えてくれるものが欲しかった
+そういうわけでコンパクトな今流れている曲を教えてくれるものが欲しかった。
 
 ## Feature
 
@@ -76,9 +76,9 @@ https://developer.spotify.com/documentation/web-playback-sdk/#requirements
 
 なお、最新のOS/ブラウザ以外はサポートしない予定です。
 
-### 1時間使うと使えなくなる
+### あの機能がほしい
 
-既知の不具合です。すぐ直します。
+Issueか適当に連絡してください
 
 ### 見た目がダサい
 
