@@ -111,6 +111,12 @@ yarn server:start
 yarn client:start
 ```
 
+or 
+
+```bash
+yarn watch
+```
+
 ## Contribute
 
 ウェルカムアボード
