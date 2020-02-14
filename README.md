@@ -22,13 +22,13 @@ VSCodeなど使っている間に、今流れている曲が気になってSpoti
 ## Feature
 
 - コンパクト（800x200を想定）なSpotify~~コントローラー~~（現在コントローラーは機能しない）
+- NowPlayingツイート
 
 ### 追加予定の機能
 
 - コントローラー
 - Littlifyで再生していないときも表示
 - Like
-- NowPlayingツイート
 - 曲名、アーティスト名一発検索
 - Musixmatchで歌詞表示
 - カスタムCSS
@@ -36,11 +36,15 @@ VSCodeなど使っている間に、今流れている曲が気になってSpoti
 
 ## Try now
 
-**https://littlify.netlify.com/**
+**https://littlify.web.app/**
 
 **Spotify Premiumのアカウントが必要です。**
 
-常用する際は、Chromeアプリとして開くのがおすすめです。`chrome --app=https://littlify.netlify.com/`
+常用する際は、Chromeアプリとして開くのがおすすめです。`chrome --app=https://littlify.web.app/`
+
+PWAにも対応しています。
+
+![](https://raw.githubusercontent.com/eai04191/littlify/doc/pwa-install.png)
 
 ## FAQ
 
