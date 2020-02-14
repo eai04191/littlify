@@ -105,14 +105,15 @@ yarn
 yarn
 ```
 
-起動
+個別に起動
 ```bash
 yarn server:start
 yarn client:start
 ```
 
-or 
+or
 
+一括起動
 ```bash
 yarn watch
 ```
