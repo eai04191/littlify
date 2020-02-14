@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import queryString from "query-string";
-
+import classNames from "classnames";
 import axios from "axios";
 import Player from "./component/Player";
 import LoginScreen from "./component/LoginScreen";
@@ -130,7 +130,14 @@ class App extends React.Component<Props, State> {
 
     render() {
         return (
-            <>
+            <div
+                className={classNames(
+                    "bg-white",
+                    "text-black",
+                    "dark-mode:bg-gray-900",
+                    "dark-mode:text-gray-200"
+                )}
+            >
                 {this.state.refreshToken &&
                     this.injectSpotifyEvents({
                         refreshToken: this.state.refreshToken,
@@ -148,7 +155,7 @@ class App extends React.Component<Props, State> {
                 ) : (
                     <LoginScreen />
                 )}
-            </>
+            </div>
         );
     }
 }
