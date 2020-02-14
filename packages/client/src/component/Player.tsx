@@ -16,6 +16,7 @@ import ExternalLink from "./ExternalLink";
 
 interface Props {
     state: SpotifyState.RootObject;
+    player: any;
 }
 
 export default class Player extends React.Component<Props, {}> {
@@ -142,6 +143,13 @@ export default class Player extends React.Component<Props, {}> {
                                     "py-3",
                                     "hover:text-gray-500"
                                 )}
+                                onClick={async () => {
+                                    const currentState = await this.props.player?.getCurrentState() || {};
+                                    if (currentState.position < 5000) {
+                                        this.props.player?.previousTrack();
+                                    }
+                                    this.props.player?.seek(0);
+                                }}
                             >
                                 <FontAwesomeIcon icon={faCaretLeft} />
                             </div>
@@ -151,6 +159,9 @@ export default class Player extends React.Component<Props, {}> {
                                     "py-3",
                                     "hover:text-gray-500"
                                 )}
+                                onClick={() => {
+                                    this.props.player?.togglePlay();
+                                }}
                             >
                                 {state.paused ? (
                                     <FontAwesomeIcon icon={faPlay} />
@@ -164,6 +175,9 @@ export default class Player extends React.Component<Props, {}> {
                                     "py-3",
                                     "hover:text-gray-500"
                                 )}
+                                onClick={() => {
+                                    this.props.player?.nextTrack();
+                                }}
                             >
                                 <FontAwesomeIcon icon={faCaretRight} />
                             </div>

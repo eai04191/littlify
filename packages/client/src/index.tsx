@@ -16,6 +16,7 @@ interface State {
     state: SpotifyState.RootObject | null;
     access_token: string | null;
     refresh_token: string | null;
+    player: any;
 }
 
 class App extends React.Component<Props, State> {
@@ -25,7 +26,8 @@ class App extends React.Component<Props, State> {
         this.state = {
             state: null,
             access_token: this.props.qs.access_token?.toString() || null,
-            refresh_token: this.props.qs.refresh_token?.toString() || null
+            refresh_token: this.props.qs.refresh_token?.toString() || null,
+            player: null,
         };
     }
 
@@ -142,6 +144,10 @@ class App extends React.Component<Props, State> {
 
             // Connect to the player!
             player.connect();
+            this.setState({player});
+
+            // for debugging
+            (window as any).player = player;
         };
     };
 
@@ -155,7 +161,7 @@ class App extends React.Component<Props, State> {
 
                 {this.state.access_token ? (
                     this.state.state ? (
-                        <Player state={this.state.state} />
+                        <Player state={this.state.state} player={this.state.player}/>
                     ) : (
                         <NoStateScreen />
                     )
