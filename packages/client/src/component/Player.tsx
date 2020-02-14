@@ -193,6 +193,10 @@ export default class Player extends React.Component<Props, State> {
                             </div>
                         </div>
                         <input
+                            className={classNames(
+                                "bg-black",
+                                "dark-mode:bg-gray-600"
+                            )}
                             id={"player-seekbar"}
                             type="range"
                             min="0"
