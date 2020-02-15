@@ -8,33 +8,31 @@ type Command = {
 }
 
 export default class Shortcut {
-    readonly properties: String[];
-    readonly player: any;
-    commands: Command[];
+    private readonly player: any;
+    private readonly properties: String[] = ['key', 'ctrlKey', 'shiftKey', 'altKey', 'metaKey'];
+    private readonly commands: Command[] = [
+        {
+            key: " ",
+            callback: (player) => {
+                player?.togglePlay();
+            }
+        },
+        {
+            key: "ArrowLeft",
+            callback: (player) => {
+                player?.previousTrack();
+            }
+        },
+        {
+            key: "ArrowRight",
+            callback: (player) => {
+                player?.nextTrack();
+            }
+        }
+    ];
 
     constructor(player: any) {
         this.player = player;
-        this.properties = ['key', 'ctrlKey', 'shiftKey', 'altKey', 'metaKey'];
-        this.commands = [
-            {
-                key: " ",
-                callback: (player) => {
-                    player?.togglePlay();
-                }
-            },
-            {
-                key: "ArrowLeft",
-                callback: (player) => {
-                    player?.previousTrack();
-                }
-            },
-            {
-                key: "ArrowRight",
-                callback: (player) => {
-                    player?.nextTrack();
-                }
-            }
-        ];
     }
 
     enable() {
