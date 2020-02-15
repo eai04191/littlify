@@ -13,7 +13,7 @@ import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import MiniTrack from "./MiniTrack";
 import SpotifyURILink from "./SpotifyURILink";
 import ExternalLink from "./ExternalLink";
-import Shortcut from "../shortcut";
+import Shortcut from "./shortcut";
 
 interface Props {
     state: SpotifyState.RootObject;
