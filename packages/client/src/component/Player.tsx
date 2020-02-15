@@ -13,6 +13,7 @@ import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import MiniTrack from "./MiniTrack";
 import SpotifyURILink from "./SpotifyURILink";
 import ExternalLink from "./ExternalLink";
+import Shortcut from "../shortcut";
 
 interface Props {
     state: SpotifyState.RootObject;
@@ -20,26 +21,14 @@ interface Props {
 }
 
 export default class Player extends React.Component<Props, {}> {
-    keyDownHandler = (e: KeyboardEvent) => {
-        switch (e.key) {
-            case " ":
-                this.props.player?.togglePlay();
-                break;
-            case "ArrowLeft":
-                this.props.player?.previousTrack();
-                break;
-            case "ArrowRight":
-                this.props.player?.nextTrack();
-                break;
-        }
-    };
+    shortcut = new Shortcut(this.props.player);
 
     componentDidMount(): void {
-        window.addEventListener('keydown', this.keyDownHandler);
+        this.shortcut.enable();
     }
 
     componentWillUnmount(): void {
-        window.removeEventListener('keydown', this.keyDownHandler);
+        this.shortcut.disable();
     }
 
     render() {
