@@ -197,8 +197,7 @@ export default class Player extends React.Component<Props, {}> {
                             "flex",
                             "flex-col",
                             "w-1/4",
-                            "border-l",
-                            "hover:w-auto"
+                            "border-l"
                         )}
                     >
                         <p>前のトラック</p>
