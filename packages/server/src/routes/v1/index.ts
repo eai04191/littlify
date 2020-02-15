@@ -25,7 +25,7 @@ router.get("/login", (req, res) => {
                 client_id: process.env.SPOTIFY_CLIENT_ID,
                 scope: scope,
                 redirect_uri: process.env.SPOTIFY_REDIRECT_URI,
-                state: state
+                state: state,
             })
     );
 });
@@ -38,7 +38,7 @@ router.get("/callback", (req, res) => {
         res.redirect(
             `${process.env.CLIENT_URI}/?` +
                 querystring.stringify({
-                    error: "state_mismatch"
+                    error: "state_mismatch",
                 })
         );
     } else {
@@ -50,9 +50,9 @@ router.get("/callback", (req, res) => {
                 redirect_uri: process.env.SPOTIFY_REDIRECT_URI,
                 grant_type: "authorization_code",
                 client_id: process.env.SPOTIFY_CLIENT_ID,
-                client_secret: process.env.SPOTIFY_CLIENT_SECRET
+                client_secret: process.env.SPOTIFY_CLIENT_SECRET,
             },
-            json: true
+            json: true,
         };
 
         console.log(authOptions);
@@ -68,7 +68,7 @@ router.get("/callback", (req, res) => {
                 const options = {
                     url: "https://api.spotify.com/v1/me",
                     headers: { Authorization: "Bearer " + access_token },
-                    json: true
+                    json: true,
                 };
 
                 // use the access token to access the Spotify Web API
@@ -81,14 +81,14 @@ router.get("/callback", (req, res) => {
                     `${process.env.CLIENT_URI}/?` +
                         querystring.stringify({
                             access_token: access_token,
-                            refresh_token: refresh_token
+                            refresh_token: refresh_token,
                         })
                 );
             } else {
                 res.redirect(
                     `${process.env.CLIENT_URI}/?` +
                         querystring.stringify({
-                            error: "invalid_token"
+                            error: "invalid_token",
                         })
                 );
             }
@@ -106,20 +106,20 @@ router.get("/refresh_token", (req, res) => {
                 "Basic " +
                 new Buffer(
                     `${process.env.SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_CLIENT_SECRET}`
-                ).toString("base64")
+                ).toString("base64"),
         },
         form: {
             grant_type: "refresh_token",
-            refresh_token: refresh_token
+            refresh_token: refresh_token,
         },
-        json: true
+        json: true,
     };
 
     request.post(authOptions, function(error, response, body) {
         if (!error && response.statusCode === 200) {
-            var access_token = body.access_token;
+            const access_token = body.access_token;
             res.send({
-                access_token: access_token
+                access_token: access_token,
             });
         }
     });

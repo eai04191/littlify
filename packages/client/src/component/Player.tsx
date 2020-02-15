@@ -6,7 +6,7 @@ import {
     faCaretRight,
     faPlay,
     faPause,
-    faSlidersH
+    faSlidersH,
 } from "@fortawesome/free-solid-svg-icons";
 import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 

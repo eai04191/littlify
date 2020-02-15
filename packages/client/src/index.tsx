@@ -27,7 +27,7 @@ class App extends React.Component<Props, State> {
             state: null,
             access_token: this.props.qs.access_token?.toString() || null,
             refresh_token: this.props.qs.refresh_token?.toString() || null,
-            player: null
+            player: null,
         };
     }
 
@@ -38,7 +38,7 @@ class App extends React.Component<Props, State> {
     handleStateChange = (state: any) => {
         console.log(state);
         this.setState({
-            state: state
+            state: state,
         });
     };
 
@@ -53,7 +53,7 @@ class App extends React.Component<Props, State> {
                     console.log("新しいアクセストークン取るよ");
                     axios
                         .get(`${process.env.SERVER_URI}/v1/refresh_token`, {
-                            params: { refresh_token: refresh_token }
+                            params: { refresh_token: refresh_token },
                         })
                         .then(res => {
                             if (!res.data.access_token) {
@@ -62,7 +62,7 @@ class App extends React.Component<Props, State> {
                                 );
                             }
                             this.setState({
-                                access_token: res.data.access_token
+                                access_token: res.data.access_token,
                             });
                             console.log(
                                 "新しいアクセストークン: ",
@@ -76,7 +76,7 @@ class App extends React.Component<Props, State> {
                                 error
                             )
                         );
-                }
+                },
             });
             // Error handling
             player.addListener(
@@ -156,7 +156,7 @@ class App extends React.Component<Props, State> {
             <>
                 {this.state.refresh_token &&
                     this.injectSpotifyEvents({
-                        refresh_token: this.state.refresh_token
+                        refresh_token: this.state.refresh_token,
                     })}
 
                 {this.state.access_token ? (
