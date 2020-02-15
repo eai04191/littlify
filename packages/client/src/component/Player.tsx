@@ -20,6 +20,28 @@ interface Props {
 }
 
 export default class Player extends React.Component<Props, {}> {
+    keyDownHandler = (e: KeyboardEvent) => {
+        switch (e.key) {
+            case " ":
+                this.props.player?.togglePlay();
+                break;
+            case "ArrowLeft":
+                this.props.player?.previousTrack();
+                break;
+            case "ArrowRight":
+                this.props.player?.nextTrack();
+                break;
+        }
+    };
+
+    componentDidMount(): void {
+        window.addEventListener('keydown', this.keyDownHandler);
+    }
+
+    componentWillUnmount(): void {
+        window.removeEventListener('keydown', this.keyDownHandler);
+    }
+
     render() {
         const state = this.props.state;
         const track = state.track_window.current_track;
