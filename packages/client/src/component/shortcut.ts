@@ -30,21 +30,18 @@ export default class Shortcut {
             }
         }
     ];
+    private readonly handler = this.keyDownHandler.bind(this);
 
     constructor(player: any) {
         this.player = player;
     }
 
     enable() {
-        window.addEventListener('keydown', (e: KeyboardEvent) => {
-            this.keyDownHandler(e);
-        });
+        window.addEventListener('keydown', this.handler);
     }
 
     disable() {
-        window.removeEventListener('keydown', (e: KeyboardEvent) => {
-            this.keyDownHandler(e);
-        });
+        window.removeEventListener('keydown', this.handler);
     }
 
     keyDownHandler(e: KeyboardEvent) {
