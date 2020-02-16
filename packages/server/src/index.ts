@@ -18,7 +18,7 @@ if (!process.env.SPOTIFY_CLIENT_ID || !process.env.SPOTIFY_CLIENT_SECRET) {
 app.use(helmet())
     .use(cors())
     .use(express.urlencoded({ extended: true }))
-    .use("/v1/", router);
+    .use("/.netlify/functions/index/v1", router);
 
 app.get("/", function(_req, res) {
     res.redirect(301, "https://github.com/eai04191/littlify");
