@@ -50,14 +50,10 @@ export default class Shortcut {
     }
 
     keyDownHandler(e: MyKeyboardEvent) {
-        for (const command in this.commands) {
-            let cmd = this.commands[command];
-
+        for (const cmd of this.commands) {
             let invalid = false;
 
-            for (const property in this.properties) {
-                const prop = this.properties[property];
-
+            for (const prop of this.properties) {
                 // コンビネーションキーが指定されていない場合は押されてない事を確認する
                 if (!cmd[prop] && !e[prop]) continue;
 
