@@ -5,9 +5,10 @@
     "license": "MIT",
     "scripts": {
         "start": "nodemon",
-        "build": "tsc src/index.ts"
+        "build": "netlify-lambda build src"
     },
     "devDependencies": {
+        "@babel/preset-typescript": "^7.8.3",
         "@types/cookie-parser": "^1.4.2",
         "@types/cors": "^2.8.6",
         "@types/express": "^4.17.2",
@@ -22,8 +23,10 @@
         "express": "^4.17.1",
         "find-config": "^1.0.0",
         "helmet": "^3.21.2",
+        "netlify-lambda": "^1.6.3",
         "nodemon": "^2.0.2",
         "request": "^2.88.2",
+        "serverless-http": "^2.3.1",
         "ts-node": "^8.6.2"
     }
 }
