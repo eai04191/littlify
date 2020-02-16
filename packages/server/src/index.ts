@@ -2,6 +2,7 @@ import express = require("express");
 import helmet = require("helmet");
 import cors = require("cors");
 import router from "./routes/v1";
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 require("dotenv").config({ path: require("find-config")(".env") });
 
 const app = express();

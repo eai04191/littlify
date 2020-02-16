@@ -1,7 +1,6 @@
 import express = require("express");
 import request = require("request");
 import querystring = require("querystring");
-import cookieParser = require("cookie-parser");
 const router = express.Router();
 
 const stateKey = "spotify_auth_state";
@@ -62,12 +61,12 @@ router.get("/callback", (req, res) => {
             console.log("request error", error);
             console.log("request response.statusCode", response.statusCode);
             if (!error && response.statusCode === 200) {
-                const access_token = body.access_token,
-                    refresh_token = body.refresh_token;
+                const accessToken = body.access_token,
+                    refreshToken = body.refresh_token;
 
                 const options = {
                     url: "https://api.spotify.com/v1/me",
-                    headers: { Authorization: "Bearer " + access_token },
+                    headers: { Authorization: "Bearer " + accessToken },
                     json: true,
                 };
 
@@ -80,8 +79,8 @@ router.get("/callback", (req, res) => {
                 res.redirect(
                     `${process.env.CLIENT_URI}/?` +
                         querystring.stringify({
-                            access_token: access_token,
-                            refresh_token: refresh_token,
+                            access_token: accessToken,
+                            refresh_token: refreshToken,
                         })
                 );
             } else {
@@ -98,7 +97,7 @@ router.get("/callback", (req, res) => {
 
 router.get("/refresh_token", (req, res) => {
     // requesting access token from refresh token
-    const refresh_token = req.query.refresh_token;
+    const refreshToken = req.query.refresh_token;
     const authOptions = {
         url: "https://accounts.spotify.com/api/token",
         headers: {
@@ -110,16 +109,16 @@ router.get("/refresh_token", (req, res) => {
         },
         form: {
             grant_type: "refresh_token",
-            refresh_token: refresh_token,
+            refresh_token: refreshToken,
         },
         json: true,
     };
 
     request.post(authOptions, function(error, response, body) {
         if (!error && response.statusCode === 200) {
-            const access_token = body.access_token;
+            const accessToken = body.access_token;
             res.send({
-                access_token: access_token,
+                access_token: accessToken,
             });
         }
     });
