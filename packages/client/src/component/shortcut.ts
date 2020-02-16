@@ -1,5 +1,6 @@
 type Command = {
-    key: String,
+    [key: string]: any;
+    key: string,
     ctrlKey?: boolean,
     shiftKey?: boolean,
     altKey?: boolean,
@@ -7,9 +8,13 @@ type Command = {
     callback: (player: any) => void
 }
 
+interface MyKeyboardEvent extends KeyboardEvent {
+    [key: string]: any;
+}
+
 export default class Shortcut {
     private readonly player: any;
-    private readonly properties: String[] = ['key', 'ctrlKey', 'shiftKey', 'altKey', 'metaKey'];
+    private readonly properties: string[] = ['key', 'ctrlKey', 'shiftKey', 'altKey', 'metaKey'];
     private readonly commands: Command[] = [
         {
             key: " ",
@@ -44,21 +49,30 @@ export default class Shortcut {
         window.removeEventListener('keydown', this.handler);
     }
 
-    keyDownHandler(e: KeyboardEvent) {
-        this.commands.forEach(cmd => {
+    keyDownHandler(e: MyKeyboardEvent) {
+        for (const command in this.commands) {
+            let cmd = this.commands[command];
+
             let invalid = false;
 
-            this.properties.forEach(prop => {
-                if (!cmd[prop]) return;
+            for (const property in this.properties) {
+                const prop = this.properties[property];
 
-                if (cmd[prop] !== e[prop]) {
-                    invalid = true;
-                }
-            });
+                // コンビネーションキーが指定されていない場合は押されてない事を確認する
+                if (!cmd[prop] && !e[prop]) continue;
 
-            if (invalid) return;
+                // コンビネーションキーが指定されいる場合は押されている事を確認する
+                if (cmd[prop] === e[prop]) continue;
+
+                invalid = true;
+                break;
+            }
+
+            if (invalid) continue;
 
             cmd.callback(this.player);
-        });
+
+            break;
+        }
     }
 }
