@@ -35,11 +35,11 @@ VSCodeなど使っている間に、今流れている曲が気になってSpoti
 
 ## Try now
 
-**https://littlify.web.app/**
+**https://littlify.netlify.com/**
 
 **Spotify Premiumのアカウントが必要です。**
 
-常用する際は、Chromeアプリとして開くのがおすすめです。`chrome --app=https://littlify.web.app/`
+常用する際は、Chromeアプリとして開くのがおすすめです。`chrome --app=https://littlify.netlify.com/`
 
 PWAにも対応しています。
 
