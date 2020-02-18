@@ -1,8 +1,6 @@
 {
     "extends": "../../tsconfig.json",
     "compilerOptions": {
-        // "noImplicitAny": false
-        "jsx": "react",
-        "typeRoots": ["type"]
+        "jsx": "react"
     }
 }

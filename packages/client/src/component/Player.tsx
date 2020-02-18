@@ -15,8 +15,8 @@ import SpotifyURILink from "./SpotifyURILink";
 import ExternalLink from "./ExternalLink";
 
 interface Props {
-    state: SpotifyState.RootObject;
-    player: any;
+    state: Spotify.PlaybackState;
+    player: Spotify.SpotifyPlayer | null;
 }
 
 export default class Player extends React.Component<Props, {}> {
@@ -117,7 +117,9 @@ export default class Player extends React.Component<Props, {}> {
                                         "text-gray-700"
                                     )}
                                 >
-                                    <SpotifyURILink uri={state.context.uri}>
+                                    <SpotifyURILink
+                                        uri={state.context.uri || "#"}
+                                    >
                                         {
                                             state.context.metadata
                                                 .context_description
@@ -146,8 +148,11 @@ export default class Player extends React.Component<Props, {}> {
                                 onClick={async () => {
                                     const currentState =
                                         (await this.props.player?.getCurrentState()) ||
-                                        {};
-                                    if (currentState.position < 5000) {
+                                        null;
+                                    if (
+                                        currentState &&
+                                        currentState.position < 5000
+                                    ) {
                                         this.props.player?.previousTrack();
                                     }
                                     this.props.player?.seek(0);
@@ -217,12 +222,12 @@ export default class Player extends React.Component<Props, {}> {
                         )}
                     >
                         <p>前のトラック</p>
-                        {previousTracks.map(track => {
-                            return <MiniTrack track={track} />;
+                        {previousTracks.map((track, index) => {
+                            return <MiniTrack track={track} key={index} />;
                         })}
                         <p>次のトラック</p>
-                        {nextTracks.map(track => {
-                            return <MiniTrack track={track} />;
+                        {nextTracks.map((track, index) => {
+                            return <MiniTrack track={track} key={index} />;
                         })}
                     </div>
                 </div>
