@@ -13,14 +13,14 @@ interface Props {
 }
 
 interface State {
-    state: SpotifyState.RootObject | null;
+    state: Spotify.PlaybackState | null;
     accessToken: string | null;
     refreshToken: string | null;
-    player: any;
+    player: Spotify.SpotifyPlayer | null;
 }
 
 class App extends React.Component<Props, State> {
-    constructor(props: any) {
+    constructor(props: Props) {
         super(props);
 
         this.state = {
@@ -35,7 +35,7 @@ class App extends React.Component<Props, State> {
         console.log(this.props.qs);
     };
 
-    handleStateChange = (state: any) => {
+    handleStateChange = (state: Spotify.PlaybackState) => {
         console.log(state);
         this.setState({
             state: state,
@@ -47,7 +47,7 @@ class App extends React.Component<Props, State> {
             const player = new Spotify.Player({
                 name: "Littlify",
                 volume: 0.15,
-                getOAuthToken: (cb: (arg0: string | null) => void) => {
+                getOAuthToken: (cb: (accessToken: string) => void) => {
                     console.log("新しいアクセストークン取るよ");
                     axios
                         .get(`${process.env.SERVER_URI}/v1/refresh_token`, {
@@ -62,11 +62,14 @@ class App extends React.Component<Props, State> {
                             this.setState({
                                 accessToken: res.data.access_token,
                             });
-                            console.log(
-                                "新しいアクセストークン: ",
-                                this.state.accessToken
-                            );
-                            cb(this.state.accessToken);
+
+                            if (this.state.accessToken) {
+                                console.log(
+                                    "新しいアクセストークン: ",
+                                    this.state.accessToken
+                                );
+                                cb(this.state.accessToken);
+                            }
                         })
                         .catch(error =>
                             console.log(
@@ -77,39 +80,42 @@ class App extends React.Component<Props, State> {
                 },
             });
             // Error handling
-            player.addListener("initialization_error", ({ message }) => {
-                alert(message);
+            player.addListener("initialization_error", (e: Spotify.Error) => {
+                alert(e.message);
                 location.href = "/";
-                console.error(message);
+                console.error(e.message);
             });
-            player.addListener("authentication_error", ({ message }) => {
-                alert(message);
+            player.addListener("authentication_error", (e: Spotify.Error) => {
+                alert(e.message);
                 location.href = "/";
-                console.error(message);
+                console.error(e.message);
             });
-            player.addListener("account_error", ({ message }) => {
-                alert(message);
+            player.addListener("account_error", (e: Spotify.Error) => {
+                alert(e.message);
                 location.href = "/";
-                console.error(message);
+                console.error(e.message);
             });
-            player.addListener("playback_error", ({ message }) => {
-                alert(message);
+            player.addListener("playback_error", (e: Spotify.Error) => {
+                alert(e.message);
                 location.href = "/";
-                console.error(message);
+                console.error(e.message);
             });
 
-            player.addListener("player_state_changed", state => {
-                this.handleStateChange(state);
-            });
+            player.addListener(
+                "player_state_changed",
+                (state: Spotify.PlaybackState) => {
+                    this.handleStateChange(state);
+                }
+            );
 
             // Ready
-            player.addListener("ready", ({ device_id }) => {
-                console.log("Ready with Device ID", device_id);
+            player.on("ready", (deviceId: Spotify.WebPlaybackInstance) => {
+                console.log("Ready with Device ID", deviceId);
             });
 
             // Not Ready
-            player.addListener("not_ready", ({ device_id }) => {
-                console.log("Device ID has gone offline", device_id);
+            player.on("not_ready", (deviceId: Spotify.WebPlaybackInstance) => {
+                console.log("Device ID has gone offline", deviceId);
             });
 
             // Connect to the player!
@@ -117,6 +123,7 @@ class App extends React.Component<Props, State> {
             this.setState({ player });
 
             // for debugging
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             (window as any).player = player;
         };
     };
