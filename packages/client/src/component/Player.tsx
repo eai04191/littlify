@@ -37,7 +37,8 @@ export default class Player extends React.Component<Props, {}> {
                             "h-screen",
                             "flex-grow-0",
                             "flex-shrink-0",
-                            "border-r"
+                            "border-r",
+                            "dark-mode:border-gray-700"
                         )}
                     >
                         <img
@@ -69,7 +70,9 @@ export default class Player extends React.Component<Props, {}> {
                                 "items-center",
                                 "pl-8",
                                 "text-gray-900",
-                                "bg-white"
+                                "bg-white",
+                                "dark-mode:bg-gray-900",
+                                "dark-mode:text-gray-200"
                             )}
                         >
                             <div className={classNames("font-medium")}>
@@ -83,7 +86,8 @@ export default class Player extends React.Component<Props, {}> {
                                     className={classNames(
                                         "mt-1",
                                         "text-sm",
-                                        "text-gray-700"
+                                        "text-gray-700",
+                                        "dark-mode:text-gray-500"
                                     )}
                                 >
                                     <SpotifyURILink
@@ -114,7 +118,8 @@ export default class Player extends React.Component<Props, {}> {
                                     className={classNames(
                                         "mt-1",
                                         "text-sm",
-                                        "text-gray-700"
+                                        "text-gray-700",
+                                        "dark-mode:text-gray-500"
                                     )}
                                 >
                                     <SpotifyURILink
@@ -136,14 +141,17 @@ export default class Player extends React.Component<Props, {}> {
                                 "text-center",
                                 "select-none",
                                 "bg-gray-200",
-                                "border-t"
+                                "border-t",
+                                "dark-mode:bg-gray-800",
+                                "dark-mode:border-gray-700"
                             )}
                         >
                             <div
                                 className={classNames(
                                     "flex-1",
                                     "py-3",
-                                    "hover:text-gray-500"
+                                    "hover:text-gray-500",
+                                    "dark-mode:hover:text-gray-600"
                                 )}
                                 onClick={async () => {
                                     const currentState =
@@ -164,7 +172,8 @@ export default class Player extends React.Component<Props, {}> {
                                 className={classNames(
                                     "flex-1",
                                     "py-3",
-                                    "hover:text-gray-500"
+                                    "hover:text-gray-500",
+                                    "dark-mode:hover:text-gray-600"
                                 )}
                                 onClick={() => {
                                     this.props.player?.togglePlay();
@@ -180,7 +189,8 @@ export default class Player extends React.Component<Props, {}> {
                                 className={classNames(
                                     "flex-1",
                                     "py-3",
-                                    "hover:text-gray-500"
+                                    "hover:text-gray-500",
+                                    "dark-mode:hover:text-gray-600"
                                 )}
                                 onClick={() => {
                                     this.props.player?.nextTrack();
@@ -192,7 +202,8 @@ export default class Player extends React.Component<Props, {}> {
                                 className={classNames(
                                     "flex-1",
                                     "py-3",
-                                    "hover:text-gray-500"
+                                    "hover:text-gray-500",
+                                    "dark-mode:hover:text-gray-600"
                                 )}
                             >
                                 <FontAwesomeIcon icon={faSlidersH} />
@@ -202,7 +213,8 @@ export default class Player extends React.Component<Props, {}> {
                                     "flex-none",
                                     "py-3",
                                     "px-8",
-                                    "hover:text-gray-500"
+                                    "hover:text-gray-500",
+                                    "dark-mode:hover:text-gray-600"
                                 )}
                                 href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
                                     `${track.name}\r\n${track.artists[0].name} - ${track.album.name}\r\nhttps://open.spotify.com/track/${track.id}`
@@ -218,7 +230,8 @@ export default class Player extends React.Component<Props, {}> {
                             "flex",
                             "flex-col",
                             "w-1/4",
-                            "border-l"
+                            "border-l",
+                            "dark-mode:border-gray-700"
                         )}
                     >
                         <p>前のトラック</p>
