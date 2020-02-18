@@ -6,7 +6,7 @@ import {
     faCaretRight,
     faPlay,
     faPause,
-    faSlidersH
+    faSlidersH,
 } from "@fortawesome/free-solid-svg-icons";
 import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 
@@ -16,8 +16,8 @@ import ExternalLink from "./ExternalLink";
 import Shortcut from "./shortcut";
 
 interface Props {
-    state: SpotifyState.RootObject;
-    player: any;
+    state: Spotify.PlaybackState;
+    player: Spotify.SpotifyPlayer | null;
 }
 
 export default class Player extends React.Component<Props, {}> {
@@ -48,7 +48,8 @@ export default class Player extends React.Component<Props, {}> {
                             "h-screen",
                             "flex-grow-0",
                             "flex-shrink-0",
-                            "border-r"
+                            "border-r",
+                            "dark-mode:border-gray-700"
                         )}
                     >
                         <img
@@ -80,7 +81,9 @@ export default class Player extends React.Component<Props, {}> {
                                 "items-center",
                                 "pl-8",
                                 "text-gray-900",
-                                "bg-white"
+                                "bg-white",
+                                "dark-mode:bg-gray-900",
+                                "dark-mode:text-gray-200"
                             )}
                         >
                             <div className={classNames("font-medium")}>
@@ -94,7 +97,8 @@ export default class Player extends React.Component<Props, {}> {
                                     className={classNames(
                                         "mt-1",
                                         "text-sm",
-                                        "text-gray-700"
+                                        "text-gray-700",
+                                        "dark-mode:text-gray-500"
                                     )}
                                 >
                                     <SpotifyURILink
@@ -125,10 +129,13 @@ export default class Player extends React.Component<Props, {}> {
                                     className={classNames(
                                         "mt-1",
                                         "text-sm",
-                                        "text-gray-700"
+                                        "text-gray-700",
+                                        "dark-mode:text-gray-500"
                                     )}
                                 >
-                                    <SpotifyURILink uri={state.context.uri}>
+                                    <SpotifyURILink
+                                        uri={state.context.uri || "#"}
+                                    >
                                         {
                                             state.context.metadata
                                                 .context_description
@@ -145,20 +152,26 @@ export default class Player extends React.Component<Props, {}> {
                                 "text-center",
                                 "select-none",
                                 "bg-gray-200",
-                                "border-t"
+                                "border-t",
+                                "dark-mode:bg-gray-800",
+                                "dark-mode:border-gray-700"
                             )}
                         >
                             <div
                                 className={classNames(
                                     "flex-1",
                                     "py-3",
-                                    "hover:text-gray-500"
+                                    "hover:text-gray-500",
+                                    "dark-mode:hover:text-gray-600"
                                 )}
                                 onClick={async () => {
                                     const currentState =
                                         (await this.props.player?.getCurrentState()) ||
-                                        {};
-                                    if (currentState.position < 5000) {
+                                        null;
+                                    if (
+                                        currentState &&
+                                        currentState.position < 5000
+                                    ) {
                                         this.props.player?.previousTrack();
                                     }
                                     this.props.player?.seek(0);
@@ -170,7 +183,8 @@ export default class Player extends React.Component<Props, {}> {
                                 className={classNames(
                                     "flex-1",
                                     "py-3",
-                                    "hover:text-gray-500"
+                                    "hover:text-gray-500",
+                                    "dark-mode:hover:text-gray-600"
                                 )}
                                 onClick={() => {
                                     this.props.player?.togglePlay();
@@ -186,7 +200,8 @@ export default class Player extends React.Component<Props, {}> {
                                 className={classNames(
                                     "flex-1",
                                     "py-3",
-                                    "hover:text-gray-500"
+                                    "hover:text-gray-500",
+                                    "dark-mode:hover:text-gray-600"
                                 )}
                                 onClick={() => {
                                     this.props.player?.nextTrack();
@@ -198,7 +213,8 @@ export default class Player extends React.Component<Props, {}> {
                                 className={classNames(
                                     "flex-1",
                                     "py-3",
-                                    "hover:text-gray-500"
+                                    "hover:text-gray-500",
+                                    "dark-mode:hover:text-gray-600"
                                 )}
                             >
                                 <FontAwesomeIcon icon={faSlidersH} />
@@ -208,7 +224,8 @@ export default class Player extends React.Component<Props, {}> {
                                     "flex-none",
                                     "py-3",
                                     "px-8",
-                                    "hover:text-gray-500"
+                                    "hover:text-gray-500",
+                                    "dark-mode:hover:text-gray-600"
                                 )}
                                 href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
                                     `${track.name}\r\n${track.artists[0].name} - ${track.album.name}\r\nhttps://open.spotify.com/track/${track.id}`
@@ -224,16 +241,17 @@ export default class Player extends React.Component<Props, {}> {
                             "flex",
                             "flex-col",
                             "w-1/4",
-                            "border-l"
+                            "border-l",
+                            "dark-mode:border-gray-700"
                         )}
                     >
                         <p>前のトラック</p>
-                        {previousTracks.map(track => {
-                            return <MiniTrack track={track} />;
+                        {previousTracks.map((track, index) => {
+                            return <MiniTrack track={track} key={index} />;
                         })}
                         <p>次のトラック</p>
-                        {nextTracks.map(track => {
-                            return <MiniTrack track={track} />;
+                        {nextTracks.map((track, index) => {
+                            return <MiniTrack track={track} key={index} />;
                         })}
                     </div>
                 </div>

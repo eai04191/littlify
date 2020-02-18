@@ -1,7 +1,6 @@
-import express = require("express");
-import request = require("request");
-import querystring = require("querystring");
-import cookieParser = require("cookie-parser");
+import express from "express";
+import request from "request";
+import querystring from "querystring";
 const router = express.Router();
 
 const stateKey = "spotify_auth_state";
@@ -25,7 +24,7 @@ router.get("/login", (req, res) => {
                 client_id: process.env.SPOTIFY_CLIENT_ID,
                 scope: scope,
                 redirect_uri: process.env.SPOTIFY_REDIRECT_URI,
-                state: state
+                state: state,
             })
     );
 });
@@ -38,7 +37,7 @@ router.get("/callback", (req, res) => {
         res.redirect(
             `${process.env.CLIENT_URI}/?` +
                 querystring.stringify({
-                    error: "state_mismatch"
+                    error: "state_mismatch",
                 })
         );
     } else {
@@ -50,9 +49,9 @@ router.get("/callback", (req, res) => {
                 redirect_uri: process.env.SPOTIFY_REDIRECT_URI,
                 grant_type: "authorization_code",
                 client_id: process.env.SPOTIFY_CLIENT_ID,
-                client_secret: process.env.SPOTIFY_CLIENT_SECRET
+                client_secret: process.env.SPOTIFY_CLIENT_SECRET,
             },
-            json: true
+            json: true,
         };
 
         console.log(authOptions);
@@ -62,13 +61,13 @@ router.get("/callback", (req, res) => {
             console.log("request error", error);
             console.log("request response.statusCode", response.statusCode);
             if (!error && response.statusCode === 200) {
-                const access_token = body.access_token,
-                    refresh_token = body.refresh_token;
+                const accessToken = body.access_token,
+                    refreshToken = body.refresh_token;
 
                 const options = {
                     url: "https://api.spotify.com/v1/me",
-                    headers: { Authorization: "Bearer " + access_token },
-                    json: true
+                    headers: { Authorization: "Bearer " + accessToken },
+                    json: true,
                 };
 
                 // use the access token to access the Spotify Web API
@@ -80,15 +79,15 @@ router.get("/callback", (req, res) => {
                 res.redirect(
                     `${process.env.CLIENT_URI}/?` +
                         querystring.stringify({
-                            access_token: access_token,
-                            refresh_token: refresh_token
+                            access_token: accessToken,
+                            refresh_token: refreshToken,
                         })
                 );
             } else {
                 res.redirect(
                     `${process.env.CLIENT_URI}/?` +
                         querystring.stringify({
-                            error: "invalid_token"
+                            error: "invalid_token",
                         })
                 );
             }
@@ -98,7 +97,7 @@ router.get("/callback", (req, res) => {
 
 router.get("/refresh_token", (req, res) => {
     // requesting access token from refresh token
-    const refresh_token = req.query.refresh_token;
+    const refreshToken = req.query.refresh_token;
     const authOptions = {
         url: "https://accounts.spotify.com/api/token",
         headers: {
@@ -106,20 +105,20 @@ router.get("/refresh_token", (req, res) => {
                 "Basic " +
                 new Buffer(
                     `${process.env.SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_CLIENT_SECRET}`
-                ).toString("base64")
+                ).toString("base64"),
         },
         form: {
             grant_type: "refresh_token",
-            refresh_token: refresh_token
+            refresh_token: refreshToken,
         },
-        json: true
+        json: true,
     };
 
     request.post(authOptions, function(error, response, body) {
         if (!error && response.statusCode === 200) {
-            var access_token = body.access_token;
+            const accessToken = body.access_token;
             res.send({
-                access_token: access_token
+                access_token: accessToken,
             });
         }
     });
