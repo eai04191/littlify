@@ -5,6 +5,10 @@
 
 </div>
 
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
+
 Little Spotify Controller
 
 ## Motivation
@@ -21,12 +25,11 @@ VSCodeなど使っている間に、今流れている曲が気になってSpoti
 
 ## Feature
 
-- コンパクト（800x200を想定）なSpotify~~コントローラー~~（現在コントローラーは機能しない）
+- コンパクト（800x200を想定）なSpotifyコントローラー
 - NowPlayingツイート
 
 ### 追加予定の機能
 
-- コントローラー
 - Littlifyで再生していないときも表示
 - Like
 - 曲名、アーティスト名一発検索
@@ -36,11 +39,11 @@ VSCodeなど使っている間に、今流れている曲が気になってSpoti
 
 ## Try now
 
-**https://littlify.web.app/**
+**https://littlify.netlify.com/**
 
 **Spotify Premiumのアカウントが必要です。**
 
-常用する際は、Chromeアプリとして開くのがおすすめです。`chrome --app=https://littlify.web.app/`
+常用する際は、Chromeアプリとして開くのがおすすめです。`chrome --app=https://littlify.netlify.com/`
 
 PWAにも対応しています。
 
@@ -131,3 +134,22 @@ yarn watch
 ## License
 
 MIT
+
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://mohemohe.dev"><img src="https://avatars3.githubusercontent.com/u/5028163?v=4" width="100px;" alt=""/><br /><sub><b>mohemohe</b></sub></a><br /><a href="#design-mohemohe" title="Design">🎨</a> <a href="https://github.com/eai04191/littlify/commits?author=mohemohe" title="Code">💻</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!

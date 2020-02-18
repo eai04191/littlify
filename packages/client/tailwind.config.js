@@ -1,5 +1,10 @@
 module.exports = {
     theme: {
+        screens: {
+            "dark-mode": {
+                raw: "(prefers-color-scheme: dark)"
+            }
+        },
         extend: {
             maxWidth: {
                 "screen-1/2": "50vw"
@@ -13,6 +18,5 @@ module.exports = {
             }
         }
     },
-    variants: {},
-    plugins: []
+    plugins: [require("tailwindcss-dark-mode")()]
 };
