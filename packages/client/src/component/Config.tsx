@@ -15,7 +15,7 @@ export interface Message<T> {
 }
 
 export interface State {
-    auto_auth: boolean;
+    auto_auth?: boolean;
 }
 
 export default class Config extends React.Component<{}, State> {
@@ -50,7 +50,7 @@ export default class Config extends React.Component<{}, State> {
         }
         console.log("onmessage:", event.data);
 
-        const data = event.data as Message<any>;
+        const data = event.data as Message<{}>;
         switch (data.event) {
             case Event.OPEN_ACK: {
                 const state = data.payload as State;

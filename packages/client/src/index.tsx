@@ -37,7 +37,7 @@ class App extends React.Component<Props, State> {
 
         if (Object.keys(this.props.qs).length === 0) {
             if (localStorage.config) {
-                let config: ConfigState = {} as any;
+                let config: ConfigState = {};
                 try {
                     config = JSON.parse(localStorage.config);
                 } catch (e) {
