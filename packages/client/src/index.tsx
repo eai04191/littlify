@@ -46,6 +46,8 @@ class App extends React.Component<Props, State> {
                 if (config.auto_auth) {
                     location.href = `${process.env.SERVER_URI}/v1/login?state=hogehoge`;
                 }
+            } else {
+                localStorage.config = JSON.stringify({});
             }
         }
     };
