@@ -1,52 +1,58 @@
 type Command = {
     [key: string]: any;
-    key: string,
-    ctrlKey?: boolean,
-    shiftKey?: boolean,
-    altKey?: boolean,
-    metaKey?: boolean,
-    callback: (player: any) => void
-}
+    key: string;
+    ctrlKey?: boolean;
+    shiftKey?: boolean;
+    altKey?: boolean;
+    metaKey?: boolean;
+    callback: (player: Spotify.SpotifyPlayer) => void;
+};
 
-interface MyKeyboardEvent extends KeyboardEvent {
+type MyKeyboardEvent = KeyboardEvent & {
     [key: string]: any;
-}
+};
 
 export default class Shortcut {
-    private readonly player: any;
-    private readonly properties: string[] = ['key', 'ctrlKey', 'shiftKey', 'altKey', 'metaKey'];
+    private readonly player: Spotify.SpotifyPlayer;
+    private readonly properties: string[] = [
+        "key",
+        "ctrlKey",
+        "shiftKey",
+        "altKey",
+        "metaKey",
+    ];
     private readonly commands: Command[] = [
         {
-            key: " ",
-            callback: (player) => {
+            key: " ", // Space Key
+            callback: player => {
                 player?.togglePlay();
-            }
+            },
         },
         {
             key: "ArrowLeft",
-            callback: (player) => {
+            callback: player => {
                 player?.previousTrack();
-            }
+            },
         },
         {
             key: "ArrowRight",
-            callback: (player) => {
+            callback: player => {
                 player?.nextTrack();
-            }
-        }
+            },
+        },
     ];
     private readonly handler = this.keyDownHandler.bind(this);
 
-    constructor(player: any) {
+    constructor(player: Spotify.SpotifyPlayer) {
         this.player = player;
     }
 
     enable() {
-        window.addEventListener('keydown', this.handler);
+        window.addEventListener("keydown", this.handler);
     }
 
     disable() {
-        window.removeEventListener('keydown', this.handler);
+        window.removeEventListener("keydown", this.handler);
     }
 
     keyDownHandler(e: MyKeyboardEvent) {
