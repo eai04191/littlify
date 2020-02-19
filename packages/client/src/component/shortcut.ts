@@ -1,5 +1,4 @@
 type Command = {
-    [key: string]: any;
     key: string;
     ctrlKey?: boolean;
     shiftKey?: boolean;
@@ -8,13 +7,11 @@ type Command = {
     callback: (player: Spotify.SpotifyPlayer) => void;
 };
 
-type MyKeyboardEvent = KeyboardEvent & {
-    [key: string]: any;
-};
+type Property = keyof Command | keyof KeyboardEvent;
 
 export default class Shortcut {
     private readonly player: Spotify.SpotifyPlayer;
-    private readonly properties: string[] = [
+    private readonly properties: Property[] = [
         "key",
         "ctrlKey",
         "shiftKey",
@@ -55,16 +52,24 @@ export default class Shortcut {
         window.removeEventListener("keydown", this.handler);
     }
 
-    keyDownHandler(e: MyKeyboardEvent) {
+    keyDownHandler(e: KeyboardEvent) {
         for (const cmd of this.commands) {
             let invalid = false;
 
             for (const prop of this.properties) {
                 // コンビネーションキーが指定されていない場合は押されてない事を確認する
-                if (!cmd[prop] && !e[prop]) continue;
+                if (
+                    !cmd[prop as keyof Command] &&
+                    !e[prop as keyof KeyboardEvent]
+                )
+                    continue;
 
                 // コンビネーションキーが指定されいる場合は押されている事を確認する
-                if (cmd[prop] === e[prop]) continue;
+                if (
+                    cmd[prop as keyof Command] ===
+                    e[prop as keyof KeyboardEvent]
+                )
+                    continue;
 
                 invalid = true;
                 break;
