@@ -1,20 +1,10 @@
 import React from "react";
 import classNames from "classnames";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-    faCaretLeft,
-    faCaretRight,
-    faPlay,
-    faPause,
-    faSlidersH,
-} from "@fortawesome/free-solid-svg-icons";
-import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 
 import MiniTrack from "./MiniTrack";
 import SpotifyURILink from "./SpotifyURILink";
-import ExternalLink from "./ExternalLink";
-import { Event } from "./Config";
 import Shortcut from "./shortcut";
+import Controller from "./Controller";
 
 interface Props {
     state: Spotify.PlaybackState;
@@ -54,10 +44,7 @@ export default class Player extends React.Component<Props, {}> {
                         )}
                     >
                         <img
-                            src={
-                                state.track_window.current_track.album.images[2]
-                                    .url
-                            }
+                            src={track.album.images[2].url}
                             className={classNames(
                                 "self-center",
                                 "h-screen",
@@ -90,9 +77,9 @@ export default class Player extends React.Component<Props, {}> {
                             <div className={classNames("font-medium")}>
                                 <SpotifyURILink
                                     className={classNames("text-2xl")}
-                                    uri={state.track_window.current_track.uri}
+                                    uri={track.uri}
                                 >
-                                    {state.track_window.current_track.name}
+                                    {track.name}
                                 </SpotifyURILink>
                                 <p
                                     className={classNames(
@@ -102,28 +89,12 @@ export default class Player extends React.Component<Props, {}> {
                                         "dark-mode:text-gray-500"
                                     )}
                                 >
-                                    <SpotifyURILink
-                                        uri={
-                                            state.track_window.current_track
-                                                .artists[0].uri
-                                        }
-                                    >
-                                        {
-                                            state.track_window.current_track
-                                                .artists[0].name
-                                        }
+                                    <SpotifyURILink uri={track.artists[0].uri}>
+                                        {track.artists[0].name}
                                     </SpotifyURILink>
                                     {" - "}
-                                    <SpotifyURILink
-                                        uri={
-                                            state.track_window.current_track
-                                                .album.uri
-                                        }
-                                    >
-                                        {
-                                            state.track_window.current_track
-                                                .album.name
-                                        }
+                                    <SpotifyURILink uri={track.album.uri}>
+                                        {track.album.name}
                                     </SpotifyURILink>
                                 </p>
                                 <p
@@ -145,152 +116,10 @@ export default class Player extends React.Component<Props, {}> {
                                 </p>
                             </div>
                         </div>
-                        <div
-                            className={classNames(
-                                "controll-column",
-                                "flex",
-                                "items-center",
-                                "text-center",
-                                "select-none",
-                                "bg-gray-200",
-                                "border-t",
-                                "dark-mode:bg-gray-800",
-                                "dark-mode:border-gray-700"
-                            )}
-                        >
-                            <div
-                                className={classNames(
-                                    "flex-1",
-                                    "py-3",
-                                    "hover:text-gray-500",
-                                    "dark-mode:hover:text-gray-600"
-                                )}
-                                onClick={async () => {
-                                    const currentState =
-                                        (await this.props.player.getCurrentState()) ||
-                                        null;
-                                    if (
-                                        currentState &&
-                                        currentState.position < 5000
-                                    ) {
-                                        this.props.player.previousTrack();
-                                    }
-                                    this.props.player.seek(0);
-                                }}
-                            >
-                                <FontAwesomeIcon icon={faCaretLeft} />
-                            </div>
-                            <div
-                                className={classNames(
-                                    "flex-1",
-                                    "py-3",
-                                    "hover:text-gray-500",
-                                    "dark-mode:hover:text-gray-600"
-                                )}
-                                onClick={() => {
-                                    this.props.player?.togglePlay();
-                                }}
-                            >
-                                {state.paused ? (
-                                    <FontAwesomeIcon icon={faPlay} />
-                                ) : (
-                                    <FontAwesomeIcon icon={faPause} />
-                                )}
-                            </div>
-                            <div
-                                className={classNames(
-                                    "flex-1",
-                                    "py-3",
-                                    "hover:text-gray-500",
-                                    "dark-mode:hover:text-gray-600"
-                                )}
-                                onClick={() => {
-                                    this.props.player?.nextTrack();
-                                }}
-                            >
-                                <FontAwesomeIcon icon={faCaretRight} />
-                            </div>
-                            <div
-                                className={classNames(
-                                    "flex-1",
-                                    "py-3",
-                                    "hover:text-gray-500",
-                                    "dark-mode:hover:text-gray-600"
-                                )}
-                                onClick={() => {
-                                    const w = window.open("/config");
-                                    if (w) {
-                                        w.onmessage = event => {
-                                            if (
-                                                event.data.type !==
-                                                "littlify_config"
-                                            ) {
-                                                return;
-                                            }
-                                            console.log(
-                                                "onmessage:",
-                                                event.data
-                                            );
-                                            switch (event.data.event) {
-                                                case Event.OPEN_SYN: {
-                                                    let config = {};
-                                                    try {
-                                                        config = JSON.parse(
-                                                            localStorage.config
-                                                        );
-                                                    } catch (e) {
-                                                        console.error(e);
-                                                    }
-
-                                                    w.postMessage(
-                                                        {
-                                                            type:
-                                                                "littlify_config",
-                                                            event:
-                                                                Event.OPEN_ACK,
-                                                            payload:
-                                                                config || {},
-                                                        },
-                                                        window.origin
-                                                    );
-                                                    break;
-                                                }
-                                                case Event.CLOSE_SYN: {
-                                                    localStorage.config = JSON.stringify(
-                                                        event.data.payload
-                                                    );
-                                                    w.postMessage(
-                                                        {
-                                                            type:
-                                                                "littlify_config",
-                                                            event:
-                                                                Event.CLOSE_ACK,
-                                                        },
-                                                        window.origin
-                                                    );
-                                                }
-                                            }
-                                        };
-                                    }
-                                }}
-                            >
-                                <FontAwesomeIcon icon={faSlidersH} />
-                            </div>
-                            <ExternalLink
-                                className={classNames(
-                                    "flex-none",
-                                    "py-3",
-                                    "px-8",
-                                    "hover:text-gray-500",
-                                    "dark-mode:hover:text-gray-600"
-                                )}
-                                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
-                                    `${track.name}\r\n${track.artists[0].name} - ${track.album.name}\r\nhttps://open.spotify.com/track/${track.id}`
-                                )}`}
-                            >
-                                <FontAwesomeIcon icon={faTwitter} />
-                            </ExternalLink>
-                        </div>
+                        <Controller
+                            state={this.props.state}
+                            player={this.props.player}
+                        />
                     </div>
                     <div
                         className={classNames(
