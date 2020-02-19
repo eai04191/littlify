@@ -14,6 +14,7 @@ import MiniTrack from "./MiniTrack";
 import SpotifyURILink from "./SpotifyURILink";
 import ExternalLink from "./ExternalLink";
 import {Event} from "./Config";
+import Shortcut from "./shortcut";
 
 interface Props {
     state: Spotify.PlaybackState;
@@ -21,6 +22,16 @@ interface Props {
 }
 
 export default class Player extends React.Component<Props, {}> {
+    shortcut = new Shortcut(this.props.player);
+
+    componentDidMount(): void {
+        this.shortcut.enable();
+    }
+
+    componentWillUnmount(): void {
+        this.shortcut.disable();
+    }
+
     render() {
         const state = this.props.state;
         const track = state.track_window.current_track;
