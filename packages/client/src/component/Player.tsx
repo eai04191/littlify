@@ -18,7 +18,7 @@ import Shortcut from "./shortcut";
 
 interface Props {
     state: Spotify.PlaybackState;
-    player: Spotify.SpotifyPlayer | null;
+    player: Spotify.SpotifyPlayer;
 }
 
 export default class Player extends React.Component<Props, {}> {
@@ -167,15 +167,15 @@ export default class Player extends React.Component<Props, {}> {
                                 )}
                                 onClick={async () => {
                                     const currentState =
-                                        (await this.props.player?.getCurrentState()) ||
+                                        (await this.props.player.getCurrentState()) ||
                                         null;
                                     if (
                                         currentState &&
                                         currentState.position < 5000
                                     ) {
-                                        this.props.player?.previousTrack();
+                                        this.props.player.previousTrack();
                                     }
-                                    this.props.player?.seek(0);
+                                    this.props.player.seek(0);
                                 }}
                             >
                                 <FontAwesomeIcon icon={faCaretLeft} />

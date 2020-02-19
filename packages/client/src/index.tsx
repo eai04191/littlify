@@ -159,7 +159,7 @@ class App extends React.Component<Props, State> {
                     })}
 
                 {this.state.accessToken ? (
-                    this.state.state ? (
+                    this.state.state && this.state.player ? (
                         <Player
                             state={this.state.state}
                             player={this.state.player}
