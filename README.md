@@ -6,7 +6,7 @@
 </div>
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 Little Spotify Controller
@@ -145,6 +145,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="https://mohemohe.dev"><img src="https://avatars3.githubusercontent.com/u/5028163?v=4" width="100px;" alt=""/><br /><sub><b>mohemohe</b></sub></a><br /><a href="#design-mohemohe" title="Design">🎨</a> <a href="https://github.com/eai04191/littlify/commits?author=mohemohe" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/mfmfuyu"><img src="https://avatars1.githubusercontent.com/u/54523771?v=4" width="100px;" alt=""/><br /><sub><b>fuyu</b></sub></a><br /><a href="https://github.com/eai04191/littlify/commits?author=mfmfuyu" title="Code">💻</a></td>
   </tr>
 </table>
 
