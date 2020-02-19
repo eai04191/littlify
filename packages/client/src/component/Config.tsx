@@ -5,7 +5,7 @@ export enum Event {
     OPEN_SYN,
     OPEN_ACK,
     CLOSE_SYN,
-    CLOSE_ACK
+    CLOSE_ACK,
 }
 
 export interface Message<T> {
@@ -25,7 +25,7 @@ export default class Config extends React.Component<{}, State> {
         super(props);
 
         this.state = {
-            auto_auth: false
+            auto_auth: false,
         };
     }
 
@@ -52,13 +52,15 @@ export default class Config extends React.Component<{}, State> {
 
         const data = event.data as Message<any>;
         switch (data.event) {
-            case Event.OPEN_ACK:
+            case Event.OPEN_ACK: {
                 const state = data.payload as State;
                 this.setState(state);
                 break;
-            case Event.CLOSE_ACK:
+            }
+            case Event.CLOSE_ACK: {
                 this.lock = false;
                 window.close();
+            }
         }
     }
 
@@ -66,7 +68,7 @@ export default class Config extends React.Component<{}, State> {
         return {
             type: "littlify_config",
             event,
-            payload
+            payload,
         };
     }
 
@@ -80,7 +82,7 @@ export default class Config extends React.Component<{}, State> {
                             checked={!!this.state.auto_auth}
                             onChange={e => {
                                 this.setState({
-                                    auto_auth: e.target.checked
+                                    auto_auth: e.target.checked,
                                 });
                             }}
                         />

@@ -7,7 +7,7 @@ import axios from "axios";
 import Player from "./component/Player";
 import LoginScreen from "./component/LoginScreen";
 import NoStateScreen from "./component/NoStateScreen";
-import Config, {State as ConfigState} from "./component/Config";
+import Config, { State as ConfigState } from "./component/Config";
 
 interface Props {
     qs: queryString.ParsedQuery<string>;
@@ -180,9 +180,7 @@ ReactDOM.render(
         <Route
             path={"/config"}
             exact={true}
-            render={props => (
-                <Config {...props}/>
-            )}
+            render={props => <Config {...props} />}
         />
         <Route
             path={"/"}
