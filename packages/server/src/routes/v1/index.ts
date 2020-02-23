@@ -1,9 +1,17 @@
 import express from "express";
-import request from "request";
+import axios from "axios";
 import querystring from "querystring";
 const router = express.Router();
 
 const stateKey = "spotify_auth_state";
+
+const formData = (obj: {[index: string]: string | undefined}) => {
+    const data = new URLSearchParams();
+    Object.keys(obj).forEach(key => {
+        data.append(key, `${obj[key]}`);
+    });
+    return data;
+};
 
 router.get("/", (req, res) => {
     res.send("hi");
@@ -42,55 +50,58 @@ router.get("/callback", (req, res) => {
         );
     } else {
         res.clearCookie(stateKey);
-        const authOptions = {
-            url: "https://accounts.spotify.com/api/token",
-            form: {
-                code: code,
-                redirect_uri: process.env.SPOTIFY_REDIRECT_URI,
-                grant_type: "authorization_code",
-                client_id: process.env.SPOTIFY_CLIENT_ID,
-                client_secret: process.env.SPOTIFY_CLIENT_SECRET,
-            },
-            json: true,
+        const authData = {
+            code: code,
+            redirect_uri: process.env.SPOTIFY_REDIRECT_URI,
+            grant_type: "authorization_code",
+            client_id: process.env.SPOTIFY_CLIENT_ID,
+            client_secret: process.env.SPOTIFY_CLIENT_SECRET,
         };
-
-        console.log(authOptions);
+        console.log(authData);
         console.log("\nBEFORE REQUEST\n");
 
-        request.post(authOptions, function(error, response, body) {
-            console.log("request error", error);
-            console.log("request response.statusCode", response.statusCode);
-            if (!error && response.statusCode === 200) {
+        const errRes = (reason: string) => {
+            res.redirect(
+                `${process.env.CLIENT_URI}/?` +
+                querystring.stringify({
+                    error: reason,
+                })
+            );
+        };
+
+        axios.post("https://accounts.spotify.com/api/token", formData(authData)).then(response => {
+            console.log("request response.status", response.status);
+            if (!!response.data && response.status === 200) {
+                const body = response.data;
                 const accessToken = body.access_token,
                     refreshToken = body.refresh_token;
 
-                const options = {
-                    url: "https://api.spotify.com/v1/me",
-                    headers: { Authorization: "Bearer " + accessToken },
-                    json: true,
-                };
-
                 // use the access token to access the Spotify Web API
-                request.get(options, function(error, response, body) {
-                    console.log(body);
-                });
-
-                // we can also pass the token to the browser to make requests from there
-                res.redirect(
-                    `${process.env.CLIENT_URI}/?` +
+                axios.get("https://api.spotify.com/v1/me", {
+                    headers: {
+                        Authorization: `Bearer ${accessToken}`
+                    }
+                }).then(response => {
+                    // NOTE: これログに残すのマズくない？
+                    console.log(response.data);
+                    // we can also pass the token to the browser to make requests from there
+                    res.redirect(
+                        `${process.env.CLIENT_URI}/?` +
                         querystring.stringify({
                             access_token: accessToken,
                             refresh_token: refreshToken,
                         })
-                );
+                    );
+                }).catch(e => {
+                    console.error(e);
+                    errRes("malformed_token")
+                });
             } else {
-                res.redirect(
-                    `${process.env.CLIENT_URI}/?` +
-                        querystring.stringify({
-                            error: "invalid_token",
-                        })
-                );
+                errRes("invalid_token");
             }
+        }).catch(e => {
+            console.log("request error", e);
+            errRes("internal_server_error");
         });
     }
 });
@@ -98,8 +109,12 @@ router.get("/callback", (req, res) => {
 router.get("/refresh_token", (req, res) => {
     // requesting access token from refresh token
     const refreshToken = req.query.refresh_token;
-    const authOptions = {
-        url: "https://accounts.spotify.com/api/token",
+
+    const refreshData = {
+        grant_type: "refresh_token",
+        refresh_token: refreshToken,
+    };
+    axios.post("https://accounts.spotify.com/api/token", formData(refreshData), {
         headers: {
             Authorization:
                 "Basic " +
@@ -107,20 +122,19 @@ router.get("/refresh_token", (req, res) => {
                     `${process.env.SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_CLIENT_SECRET}`
                 ).toString("base64"),
         },
-        form: {
-            grant_type: "refresh_token",
-            refresh_token: refreshToken,
-        },
-        json: true,
-    };
-
-    request.post(authOptions, function(error, response, body) {
-        if (!error && response.statusCode === 200) {
+    }).then(response => {
+        if (response.status === 200) {
+            const body = response.data;
             const accessToken = body.access_token;
             res.send({
                 access_token: accessToken,
             });
+        } else {
+            throw Error("invalid status code");
         }
+    }).catch(e => {
+        console.error(e);
+        res.status(500);
     });
 });
 
