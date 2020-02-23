@@ -1,11 +1,19 @@
 import React from "react";
 import classNames from "classnames";
+import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export enum Event {
     OPEN_SYN,
     OPEN_ACK,
     CLOSE_SYN,
     CLOSE_ACK,
+}
+
+export enum Theme {
+    AUTO = "AUTO",
+    LIGHT = "LIGHT",
+    DARK = "DARK",
 }
 
 export interface Message<T> {
@@ -16,6 +24,7 @@ export interface Message<T> {
 
 export interface State {
     auto_auth?: boolean;
+    theme?: Theme;
 }
 
 export default class Config extends React.Component<{}, State> {
@@ -26,6 +35,7 @@ export default class Config extends React.Component<{}, State> {
 
         this.state = {
             auto_auth: false,
+            theme: Theme.AUTO,
         };
     }
 
@@ -87,6 +97,33 @@ export default class Config extends React.Component<{}, State> {
                             }}
                         />
                         自動的にログインする
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        テーマ
+                        <div className="relative w-auto inline-block">
+                            <select
+                                className="appearance-none bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                id="grid-state"
+                                value={this.state.theme}
+                                onChange={e => {
+                                    this.setState({
+                                        theme: e.target.value as Theme,
+                                    });
+                                }}
+                            >
+                                <option value={Theme.AUTO}>
+                                    自動（OSの設定に合わせる）
+                                </option>
+                                <option value={Theme.LIGHT}>ライト</option>
+                                <option value={Theme.DARK}>ダーク</option>
+                            </select>
+                            {/**/}
+                            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                <FontAwesomeIcon icon={faCaretDown} />
+                            </div>
+                        </div>
                     </label>
                 </div>
                 <div className="inline-flex">

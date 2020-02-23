@@ -151,8 +151,8 @@ class App extends React.Component<Props, State> {
                 className={classNames(
                     "bg-white",
                     "text-black",
-                    "dark-mode:bg-gray-900",
-                    "dark-mode:text-gray-200"
+                    "dark:bg-gray-900",
+                    "dark:text-gray-200"
                 )}
             >
                 {this.state.refreshToken &&

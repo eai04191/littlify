@@ -40,7 +40,7 @@ export default class Player extends React.Component<Props, {}> {
                             "flex-grow-0",
                             "flex-shrink-0",
                             "border-r",
-                            "dark-mode:border-gray-700"
+                            "dark:border-gray-700"
                         )}
                     >
                         <img
@@ -70,8 +70,8 @@ export default class Player extends React.Component<Props, {}> {
                                 "pl-8",
                                 "text-gray-900",
                                 "bg-white",
-                                "dark-mode:bg-gray-900",
-                                "dark-mode:text-gray-200"
+                                "dark:bg-gray-900",
+                                "dark:text-gray-200"
                             )}
                         >
                             <div className={classNames("font-medium")}>
@@ -86,7 +86,7 @@ export default class Player extends React.Component<Props, {}> {
                                         "mt-1",
                                         "text-sm",
                                         "text-gray-700",
-                                        "dark-mode:text-gray-500"
+                                        "dark:text-gray-500"
                                     )}
                                 >
                                     <SpotifyURILink uri={track.artists[0].uri}>
@@ -102,7 +102,7 @@ export default class Player extends React.Component<Props, {}> {
                                         "mt-1",
                                         "text-sm",
                                         "text-gray-700",
-                                        "dark-mode:text-gray-500"
+                                        "dark:text-gray-500"
                                     )}
                                 >
                                     <SpotifyURILink
@@ -128,7 +128,7 @@ export default class Player extends React.Component<Props, {}> {
                             "flex-col",
                             "w-1/4",
                             "border-l",
-                            "dark-mode:border-gray-700"
+                            "dark:border-gray-700"
                         )}
                     >
                         <p>前のトラック</p>
