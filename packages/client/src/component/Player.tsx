@@ -5,6 +5,7 @@ import MiniTrack from "./MiniTrack";
 import SpotifyURILink from "./SpotifyURILink";
 import Shortcut from "./shortcut";
 import Controller from "./Controller";
+import Artists from "./Artists";
 
 interface Props {
     state: Spotify.PlaybackState;
@@ -89,9 +90,7 @@ export default class Player extends React.Component<Props, {}> {
                                         "dark-mode:text-gray-500"
                                     )}
                                 >
-                                    <SpotifyURILink uri={track.artists[0].uri}>
-                                        {track.artists[0].name}
-                                    </SpotifyURILink>
+                                    <Artists artists={track.artists} />
                                     {" - "}
                                     <SpotifyURILink uri={track.album.uri}>
                                         {track.album.name}

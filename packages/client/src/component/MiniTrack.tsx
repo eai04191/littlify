@@ -1,6 +1,8 @@
 import React from "react";
 import classNames from "classnames";
 
+import Artists from "./Artists";
+
 interface Props {
     track: SpotifyState.Track;
 }
@@ -22,7 +24,7 @@ export default class MiniTrack extends React.Component<Props, {}> {
                             "dark-mode:text-gray-500"
                         )}
                     >
-                        {this.props.track.artists[0].name} -{" "}
+                        <Artists artists={this.props.track.artists} /> -{" "}
                         {this.props.track.album.name}
                     </div>
                 </div>
