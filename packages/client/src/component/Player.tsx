@@ -27,8 +27,8 @@ export default class Player extends React.Component<Props, {}> {
         const track = state.track_window.current_track;
         const nextTracks = state.track_window.next_tracks;
         const previousTracks = state.track_window.previous_tracks;
-        previousTracks.reverse().pop();
-        nextTracks.reverse().pop();
+        previousTracks.shift();
+        nextTracks.pop();
         return (
             <>
                 <div className={classNames("flex", "border-gray-400")}>
