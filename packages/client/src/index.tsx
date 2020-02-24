@@ -64,7 +64,7 @@ class App extends React.Component<Props, State> {
             const currentTrack = state.track_window.current_track;
             const artists = currentTrack.artists.map(v => v.name).join(", ");
 
-            document.title = `${currentTrack.name}・${artists}`;
+            document.title = `${currentTrack.name} · ${artists}`;
         }
     };
 
