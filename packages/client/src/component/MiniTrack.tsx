@@ -19,7 +19,7 @@ export default class MiniTrack extends React.Component<Props, {}> {
                         className={classNames(
                             "text-sm",
                             "text-gray-700",
-                            "dark-mode:text-gray-500"
+                            "dark:text-gray-500"
                         )}
                     >
                         {this.props.track.artists[0].name} -{" "}
