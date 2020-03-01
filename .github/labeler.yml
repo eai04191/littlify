@@ -1,0 +1,4 @@
+💻 Client:
+  - packages/client/**/*
+☁️ Server:
+  - packages/server/**/*
