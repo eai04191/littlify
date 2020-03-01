@@ -57,6 +57,15 @@ class App extends React.Component<Props, State> {
         this.setState({
             state: state,
         });
+
+        if (state.paused) {
+            document.title = "Littlify";
+        } else {
+            const currentTrack = state.track_window.current_track;
+            const artists = currentTrack.artists.map(v => v.name).join(", ");
+
+            document.title = `${currentTrack.name} · ${artists}`;
+        }
     };
 
     injectSpotifyEvents = ({ refreshToken }: { refreshToken: string }) => {
