@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Router, Route } from "react-router-dom";
 import queryString from "query-string";
 import classNames from "classnames";
 import axios from "axios";
@@ -8,6 +8,7 @@ import Player from "./component/Player";
 import LoginScreen from "./component/LoginScreen";
 import NoStateScreen from "./component/NoStateScreen";
 import Config, { State as ConfigState } from "./component/Config";
+import history from "./history";
 
 interface Props {
     qs: queryString.ParsedQuery<string>;
@@ -85,17 +86,24 @@ class App extends React.Component<Props, State> {
                                     "res.data.access_token is notfound"
                                 );
                             }
-                            this.setState({
-                                accessToken: res.data.access_token,
-                            });
-
-                            if (this.state.accessToken) {
-                                console.log(
-                                    "新しいアクセストークン: ",
-                                    this.state.accessToken
-                                );
-                                cb(this.state.accessToken);
-                            }
+                            this.setState(
+                                {
+                                    accessToken: res.data.access_token,
+                                },
+                                () => {
+                                    if (this.state.accessToken) {
+                                        history.replace({
+                                            ...history.location,
+                                            search: "",
+                                        });
+                                        console.log(
+                                            "新しいアクセストークン: ",
+                                            this.state.accessToken
+                                        );
+                                        cb(this.state.accessToken);
+                                    }
+                                }
+                            );
                         })
                         .catch(error =>
                             console.log(
@@ -187,7 +195,7 @@ class App extends React.Component<Props, State> {
 }
 
 ReactDOM.render(
-    <Router>
+    <Router history={history}>
         <Route
             path={"/config"}
             exact={true}
