@@ -1,7 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ChevronDown } from "react-feather";
 
 export enum Theme {
     AUTO = "AUTO",
@@ -86,7 +85,7 @@ export default class Config extends React.Component<{}, State> {
                             </select>
                             {/**/}
                             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                                <FontAwesomeIcon icon={faCaretDown} />
+                                <ChevronDown size={16} />
                             </div>
                         </div>
                     </label>

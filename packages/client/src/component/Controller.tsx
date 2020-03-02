@@ -1,14 +1,13 @@
 import React from "react";
 import classNames from "classnames";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-    faCaretLeft,
-    faCaretRight,
-    faPause,
-    faPlay,
-    faSlidersH,
-} from "@fortawesome/free-solid-svg-icons";
-import { faTwitter } from "@fortawesome/free-brands-svg-icons";
+    Play,
+    Pause,
+    ChevronLeft,
+    ChevronRight,
+    Sliders,
+    Twitter,
+} from "react-feather";
 
 import ExternalLink from "./ExternalLink";
 import { State as IConfig, Theme } from "./Config";
@@ -76,7 +75,7 @@ export default class Controller extends React.Component<Props, {}> {
                 <div
                     className={classNames(
                         "flex-1",
-                        "py-3",
+                        "py-4",
                         "hover:text-gray-500",
                         "dark:hover:text-gray-600"
                     )}
@@ -89,7 +88,7 @@ export default class Controller extends React.Component<Props, {}> {
                         this.props.player.seek(0);
                     }}
                 >
-                    <FontAwesomeIcon icon={faCaretLeft} />
+                    <ChevronLeft className={classNames("m-auto")} size={16} />
                 </div>
                 <div
                     className={classNames(
@@ -103,15 +102,21 @@ export default class Controller extends React.Component<Props, {}> {
                     }}
                 >
                     {state.paused ? (
-                        <FontAwesomeIcon icon={faPlay} />
+                        <Play
+                            className={classNames("m-auto", "filled")}
+                            size={20}
+                        />
                     ) : (
-                        <FontAwesomeIcon icon={faPause} />
+                        <Pause
+                            className={classNames("m-auto", "filled")}
+                            size={20}
+                        />
                     )}
                 </div>
                 <div
                     className={classNames(
                         "flex-1",
-                        "py-3",
+                        "py-4",
                         "hover:text-gray-500",
                         "dark:hover:text-gray-600"
                     )}
@@ -119,12 +124,12 @@ export default class Controller extends React.Component<Props, {}> {
                         this.props.player?.nextTrack();
                     }}
                 >
-                    <FontAwesomeIcon icon={faCaretRight} />
+                    <ChevronRight className={classNames("m-auto")} size={16} />
                 </div>
                 <div
                     className={classNames(
                         "flex-1",
-                        "py-3",
+                        "py-4",
                         "hover:text-gray-500",
                         "dark:hover:text-gray-600"
                     )}
@@ -132,12 +137,15 @@ export default class Controller extends React.Component<Props, {}> {
                         window.open("/config");
                     }}
                 >
-                    <FontAwesomeIcon icon={faSlidersH} />
+                    <Sliders
+                        className={classNames("m-auto")}
+                        size={16}
+                    />
                 </div>
                 <ExternalLink
                     className={classNames(
                         "flex-none",
-                        "py-3",
+                        "py-4",
                         "px-8",
                         "hover:text-gray-500",
                         "dark:hover:text-gray-600"
@@ -146,7 +154,10 @@ export default class Controller extends React.Component<Props, {}> {
                         `${track.name}\r\n${track.artists[0].name} - ${track.album.name}\r\nhttps://open.spotify.com/track/${track.id}`
                     )}`}
                 >
-                    <FontAwesomeIcon icon={faTwitter} />
+                    <Twitter
+                        className={classNames("m-auto", "filled")}
+                        size={16}
+                    />
                 </ExternalLink>
             </div>
         );
