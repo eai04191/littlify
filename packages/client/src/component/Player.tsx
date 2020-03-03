@@ -8,7 +8,6 @@ import SpotifyURILink from "./SpotifyURILink";
 import Shortcut from "./shortcut";
 import Controller from "./Controller";
 import Artists from "./Artists";
-import { url } from "inspector";
 
 interface Props {
     state: Spotify.PlaybackState;
