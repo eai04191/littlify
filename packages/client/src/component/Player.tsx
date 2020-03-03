@@ -93,8 +93,6 @@ export default class Player extends React.Component<Props, {}> {
     }
 
     addToQueue(spotifyUri: string) {
-        console.log("addToQueue");
-
         axios.post(
             `https://api.spotify.com/v1/me/player/add-to-queue?uri=${spotifyUri}`,
             {},
