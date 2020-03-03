@@ -47,10 +47,21 @@ export default class Player extends React.Component<Props, {}> {
             const matches = text.match(regex);
             if (!matches) continue;
 
-            const spotifyUri = `spotify:${matches[1]}:${matches[2]}`;
+            const type = matches[1];
+            const id = matches[2];
+
+            const spotifyUri = `spotify:${type}:${id}`;
             let data = {};
 
-            switch (matches[1]) {
+            if (spotifyUri === this.props.state.context.uri) return;
+
+            if (
+                type === "track" &&
+                spotifyUri === this.props.state.track_window.current_track.uri
+            )
+                return;
+
+            switch (type) {
                 case "album":
                 case "artist":
                 case "playlist":
