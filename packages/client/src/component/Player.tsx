@@ -51,6 +51,12 @@ export default class Player extends React.Component<Props, {}> {
             const id = matches[2];
 
             const spotifyUri = `spotify:${type}:${id}`;
+
+            if (type === "track") {
+                this.addToQueue(spotifyUri);
+                return;
+            }
+
             let data = {};
 
             if (spotifyUri === this.props.state.context.uri) return;
@@ -84,6 +90,20 @@ export default class Player extends React.Component<Props, {}> {
                 },
             });
         }
+    }
+
+    addToQueue(spotifyUri: string) {
+        console.log("addToQueue");
+
+        axios.post(
+            `https://api.spotify.com/v1/me/player/add-to-queue?uri=${spotifyUri}`,
+            {},
+            {
+                headers: {
+                    Authorization: `Bearer ${this.props.accessToken}`,
+                },
+            }
+        );
     }
 
     render() {
