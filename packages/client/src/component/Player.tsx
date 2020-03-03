@@ -1,15 +1,19 @@
-import React from "react";
+import React, { DragEvent } from "react";
 import classNames from "classnames";
+
+import axios from "axios";
 
 import MiniTrack from "./MiniTrack";
 import SpotifyURILink from "./SpotifyURILink";
 import Shortcut from "./shortcut";
 import Controller from "./Controller";
 import Artists from "./Artists";
+import { url } from "inspector";
 
 interface Props {
     state: Spotify.PlaybackState;
     player: Spotify.SpotifyPlayer;
+    accessToken: string;
 }
 
 export default class Player extends React.Component<Props, {}> {
@@ -17,10 +21,57 @@ export default class Player extends React.Component<Props, {}> {
 
     componentDidMount(): void {
         this.shortcut.enable();
+
+        this.handleDrop = this.handleDrop.bind(this);
     }
 
     componentWillUnmount(): void {
         this.shortcut.disable();
+    }
+
+    handleDragOver(e: DragEvent) {
+        e.preventDefault();
+    }
+
+    handleDrop(e: DragEvent) {
+        e.preventDefault();
+
+        const text = e.dataTransfer.getData("text");
+        if (!text) return;
+
+        const matches = text.match(
+            /^https:\/\/open\.spotify.com\/(\w+)\/(\w+)\/?/
+        );
+
+        if (!matches) return;
+
+        const uri = `spotify:${matches[1]}:${matches[2]}`;
+        let data = {};
+
+        switch (matches[1]) {
+            case "algum":
+            case "artist":
+            case "playlist":
+                data = {
+                    context_uri: uri,
+                };
+                break;
+            case "track":
+                data = {
+                    uris: [uri],
+                };
+                break;
+            default:
+                return;
+        }
+
+        axios
+            .put(`https://api.spotify.com/v1/me/player/play`, data, {
+                headers: {
+                    Authorization: `Bearer ${this.props.accessToken}`,
+                },
+            })
+            .then(response => console.log(response));
     }
 
     render() {
@@ -32,7 +83,11 @@ export default class Player extends React.Component<Props, {}> {
         nextTracks.pop();
         return (
             <>
-                <div className={classNames("flex", "border-gray-400")}>
+                <div
+                    onDragOver={this.handleDragOver}
+                    onDrop={this.handleDrop}
+                    className={classNames("flex", "border-gray-400")}
+                >
                     <div
                         className={classNames(
                             "jucket-column",
