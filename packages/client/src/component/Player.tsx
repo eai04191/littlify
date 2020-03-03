@@ -38,39 +38,41 @@ export default class Player extends React.Component<Props, {}> {
         const text = e.dataTransfer.getData("text");
         if (!text) return;
 
-        const matches = text.match(
-            /^https:\/\/open\.spotify.com\/(\w+)\/(\w+)\/?/
-        );
+        const regexes = [
+            /^https:\/\/open\.spotify.com\/(\w+)\/(\w+)\/?/,
+            /^spotify:(\w+):(\w+)$/,
+        ];
 
-        if (!matches) return;
+        for (const regex of regexes) {
+            const matches = text.match(regex);
+            if (!matches) continue;
 
-        const uri = `spotify:${matches[1]}:${matches[2]}`;
-        let data = {};
+            const spotifyUri = `spotify:${matches[1]}:${matches[2]}`;
+            let data = {};
 
-        switch (matches[1]) {
-            case "algum":
-            case "artist":
-            case "playlist":
-                data = {
-                    context_uri: uri,
-                };
-                break;
-            case "track":
-                data = {
-                    uris: [uri],
-                };
-                break;
-            default:
-                return;
-        }
+            switch (matches[1]) {
+                case "album":
+                case "artist":
+                case "playlist":
+                    data = {
+                        context_uri: spotifyUri,
+                    };
+                    break;
+                case "track":
+                    data = {
+                        uris: [spotifyUri],
+                    };
+                    break;
+                default:
+                    return;
+            }
 
-        axios
-            .put(`https://api.spotify.com/v1/me/player/play`, data, {
+            axios.put(`https://api.spotify.com/v1/me/player/play`, data, {
                 headers: {
                     Authorization: `Bearer ${this.props.accessToken}`,
                 },
-            })
-            .then(response => console.log(response));
+            });
+        }
     }
 
     render() {
