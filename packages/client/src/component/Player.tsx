@@ -39,7 +39,7 @@ export default class Player extends React.Component<Props, {}> {
         if (!text) return;
 
         const regexes = [
-            /^https:\/\/open\.spotify.com\/(\w+)\/(\w+)\/?/,
+            /^https:\/\/open\.spotify.com\/(\w+)\/(\w+)/,
             /^spotify:(\w+):(\w+)$/,
         ];
 
@@ -57,42 +57,29 @@ export default class Player extends React.Component<Props, {}> {
                 return;
             }
 
-            let data = {};
-
             if (spotifyUri === this.props.state.context.uri) return;
 
-            if (
-                type === "track" &&
-                spotifyUri === this.props.state.track_window.current_track.uri
-            )
-                return;
+            if (!["album", "artist", "playlist"].includes(type)) return;
 
-            switch (type) {
-                case "album":
-                case "artist":
-                case "playlist":
-                    data = {
-                        context_uri: spotifyUri,
-                    };
-                    break;
-                case "track":
-                    data = {
-                        uris: [spotifyUri],
-                    };
-                    break;
-                default:
-                    return;
-            }
-
-            axios.put(`https://api.spotify.com/v1/me/player/play`, data, {
-                headers: {
-                    Authorization: `Bearer ${this.props.accessToken}`,
+            axios.put(
+                `https://api.spotify.com/v1/me/player/play`,
+                {
+                    context_uri: spotifyUri,
                 },
-            });
+                {
+                    headers: {
+                        Authorization: `Bearer ${this.props.accessToken}`,
+                    },
+                }
+            );
         }
     }
 
     addToQueue(spotifyUri: string) {
+        if (spotifyUri === this.props.state.track_window.current_track.uri) {
+            return;
+        }
+
         axios.post(
             `https://api.spotify.com/v1/me/player/add-to-queue?uri=${spotifyUri}`,
             {},
