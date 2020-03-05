@@ -57,18 +57,18 @@ export default class Shortcut {
             command: "player.nextTrack",
         },
     ];
-    private readonly handler = this.keyDownHandler.bind(this);
 
     constructor(player: Spotify.SpotifyPlayer) {
         this.player = player;
+        this.keyDownHandler = this.keyDownHandler.bind(this);
     }
 
     enable() {
-        window.addEventListener("keydown", this.handler);
+        window.addEventListener("keydown", this.keyDownHandler);
     }
 
     disable() {
-        window.removeEventListener("keydown", this.handler);
+        window.removeEventListener("keydown", this.keyDownHandler);
     }
 
     keyDownHandler(e: KeyboardEvent) {
