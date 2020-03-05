@@ -1,6 +1,6 @@
 type Command = {
     name: string;
-    callback: (player: Spotify.SpotifyPlayer) => void;
+    callback: () => void;
 };
 
 type ShortcutKey = {
@@ -26,20 +26,20 @@ export default class Shortcut {
     private readonly commands: Command[] = [
         {
             name: "player.togglePlay",
-            callback: player => {
-                player.togglePlay();
+            callback: () => {
+                this.player.togglePlay();
             },
         },
         {
             name: "player.previousTrack",
-            callback: player => {
-                player.previousTrack();
+            callback: () => {
+                this.player.previousTrack();
             },
         },
         {
             name: "player.nextTrack",
-            callback: player => {
-                player.nextTrack();
+            callback: () => {
+                this.player.nextTrack();
             },
         },
     ];
@@ -105,6 +105,6 @@ export default class Shortcut {
     executeCommand(name: string) {
         const command = this.commands.find(c => c.name === name);
         if (!command) return;
-        command.callback(this.player);
+        command.callback();
     }
 }
