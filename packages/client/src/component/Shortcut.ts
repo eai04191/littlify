@@ -1,13 +1,18 @@
 type Command = {
+    name: string;
+    callback: (player: Spotify.SpotifyPlayer) => void;
+};
+
+type ShortcutKey = {
     key: string;
+    command: string;
     ctrlKey?: boolean;
     shiftKey?: boolean;
     altKey?: boolean;
     metaKey?: boolean;
-    callback: (player: Spotify.SpotifyPlayer) => void;
 };
 
-type Property = keyof Command | keyof KeyboardEvent;
+type Property = keyof ShortcutKey | keyof KeyboardEvent;
 
 export default class Shortcut {
     private readonly player: Spotify.SpotifyPlayer;
@@ -20,22 +25,36 @@ export default class Shortcut {
     ];
     private readonly commands: Command[] = [
         {
-            key: " ", // Space Key
+            name: "player.togglePlay",
             callback: player => {
-                player?.togglePlay();
+                player.togglePlay();
             },
+        },
+        {
+            name: "player.previousTrack",
+            callback: player => {
+                player.previousTrack();
+            },
+        },
+        {
+            name: "player.nextTrack",
+            callback: player => {
+                player.nextTrack();
+            },
+        },
+    ];
+    private readonly shortcutKeys: ShortcutKey[] = [
+        {
+            key: " ", // Space Key
+            command: "player.togglePlay",
         },
         {
             key: "ArrowLeft",
-            callback: player => {
-                player?.previousTrack();
-            },
+            command: "player.previousTrack",
         },
         {
             key: "ArrowRight",
-            callback: player => {
-                player?.nextTrack();
-            },
+            command: "player.nextTrack",
         },
     ];
     private readonly handler = this.keyDownHandler.bind(this);
@@ -53,20 +72,20 @@ export default class Shortcut {
     }
 
     keyDownHandler(e: KeyboardEvent) {
-        for (const cmd of this.commands) {
+        for (const shortcutKey of this.shortcutKeys) {
             let invalid = false;
 
             for (const prop of this.properties) {
                 // コンビネーションキーが指定されていない場合は押されてない事を確認する
                 if (
-                    !cmd[prop as keyof Command] &&
+                    !shortcutKey[prop as keyof ShortcutKey] &&
                     !e[prop as keyof KeyboardEvent]
                 )
                     continue;
 
                 // コンビネーションキーが指定されいる場合は押されている事を確認する
                 if (
-                    cmd[prop as keyof Command] ===
+                    shortcutKey[prop as keyof ShortcutKey] ===
                     e[prop as keyof KeyboardEvent]
                 )
                     continue;
@@ -77,9 +96,15 @@ export default class Shortcut {
 
             if (invalid) continue;
 
-            cmd.callback(this.player);
+            this.executeCommand(shortcutKey.command);
 
             break;
         }
+    }
+
+    executeCommand(name: string) {
+        const command = this.commands.find(c => c.name === name);
+        if (!command) return;
+        command.callback(this.player);
     }
 }
