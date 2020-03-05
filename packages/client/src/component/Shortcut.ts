@@ -72,9 +72,7 @@ export default class Shortcut {
     }
 
     keyDownHandler(e: KeyboardEvent) {
-        for (const shortcutKey of this.shortcutKeys) {
-            let invalid = false;
-
+        const shortcutKey = this.shortcutKeys.find(shortcutKey => {
             for (const prop of this.properties) {
                 // コンビネーションキーが指定されていない場合は押されてない事を確認する
                 if (
@@ -90,16 +88,14 @@ export default class Shortcut {
                 )
                     continue;
 
-                invalid = true;
-                break;
+                return false;
             }
 
-            if (invalid) continue;
+            return true;
+        });
+        if (!shortcutKey) return;
 
-            this.executeCommand(shortcutKey.command);
-
-            break;
-        }
+        this.executeCommand(shortcutKey.command);
     }
 
     executeCommand(name: string) {
