@@ -3,23 +3,10 @@ import classNames from "classnames";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export enum Event {
-    OPEN_SYN,
-    OPEN_ACK,
-    CLOSE_SYN,
-    CLOSE_ACK,
-}
-
 export enum Theme {
     AUTO = "AUTO",
     LIGHT = "LIGHT",
     DARK = "DARK",
-}
-
-export interface Message<T> {
-    type: string;
-    event: Event;
-    payload: T;
 }
 
 export interface State {
@@ -40,46 +27,24 @@ export default class Config extends React.Component<{}, State> {
     }
 
     componentDidMount() {
-        window.addEventListener("beforeunload", e => {
+        try {
+            const state = JSON.parse(localStorage.config || "{}");
+            if (Object.keys(state).length > 0) {
+                this.setState(state);
+            }
+        } catch (e) {
+            // NOTE: localStorageに入ってないのでconstructorの初期値で継続する
+            console.warn(e);
+        }
+
+        // NOTE: どうせunloadしたらイベントリスナーが消えるから匿名関数でOK
+        window.addEventListener("beforeunload", (e) => {
             if (this.lock) {
                 e.preventDefault();
                 e.returnValue = "";
             }
             return !this.lock;
         });
-        window.addEventListener("message", e => this.handleMessage(e));
-        window.parent.postMessage(
-            this.wrapMessage(Event.OPEN_SYN, null),
-            window.parent.origin
-        );
-    }
-
-    private handleMessage(event: MessageEvent) {
-        if (event.data.type !== "littlify_config") {
-            return;
-        }
-        console.log("onmessage:", event.data);
-
-        const data = event.data as Message<{}>;
-        switch (data.event) {
-            case Event.OPEN_ACK: {
-                const state = data.payload as State;
-                this.setState(state);
-                break;
-            }
-            case Event.CLOSE_ACK: {
-                this.lock = false;
-                window.close();
-            }
-        }
-    }
-
-    private wrapMessage<T>(event: Event, payload: T): Message<T> {
-        return {
-            type: "littlify_config",
-            event,
-            payload,
-        };
     }
 
     render() {
@@ -155,10 +120,9 @@ export default class Config extends React.Component<{}, State> {
                             "rounded-r"
                         )}
                         onClick={() => {
-                            window.parent.postMessage(
-                                this.wrapMessage(Event.CLOSE_SYN, this.state),
-                                window.parent.origin
-                            );
+                            localStorage.setItem("config", JSON.stringify(this.state));
+                            this.lock = false;
+                            window.close();
                         }}
                     >
                         OK

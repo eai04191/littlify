@@ -11,7 +11,7 @@ import {
 import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 
 import ExternalLink from "./ExternalLink";
-import { Event, State as IConfig, Theme } from "./Config";
+import { State as IConfig, Theme } from "./Config";
 
 interface Props {
     state: Spotify.PlaybackState;
@@ -20,11 +20,17 @@ interface Props {
 
 export default class Controller extends React.Component<Props, {}> {
     public componentDidMount() {
-        const config = JSON.parse(localStorage.config || "{}");
-        this.onUpdateConfig(config);
+        window.addEventListener("storage", this.onUpdateConfig);
+        this.onUpdateConfig();
     }
 
-    private onUpdateConfig(config: IConfig) {
+    public componentWillUnmount() {
+        window.removeEventListener("storage", this.onUpdateConfig);
+    }
+
+    private onUpdateConfig() {
+        const config: IConfig = JSON.parse(localStorage.config || "{}");
+
         switch (config.theme) {
             case Theme.DARK:
                 document.documentElement.dataset["theme"] = "dark";
@@ -123,50 +129,7 @@ export default class Controller extends React.Component<Props, {}> {
                         "dark:hover:text-gray-600"
                     )}
                     onClick={() => {
-                        const w = window.open("/config");
-                        if (w) {
-                            w.onmessage = event => {
-                                if (event.data.type !== "littlify_config") {
-                                    return;
-                                }
-                                console.log("onmessage:", event.data);
-                                switch (event.data.event) {
-                                    case Event.OPEN_SYN: {
-                                        let config = {};
-                                        try {
-                                            config = JSON.parse(
-                                                localStorage.config
-                                            );
-                                        } catch (e) {
-                                            console.error(e);
-                                        }
-
-                                        w.postMessage(
-                                            {
-                                                type: "littlify_config",
-                                                event: Event.OPEN_ACK,
-                                                payload: config || {},
-                                            },
-                                            window.origin
-                                        );
-                                        break;
-                                    }
-                                    case Event.CLOSE_SYN: {
-                                        localStorage.config = JSON.stringify(
-                                            event.data.payload
-                                        );
-                                        w.postMessage(
-                                            {
-                                                type: "littlify_config",
-                                                event: Event.CLOSE_ACK,
-                                            },
-                                            window.origin
-                                        );
-                                        this.onUpdateConfig(event.data.payload);
-                                    }
-                                }
-                            };
-                        }
+                        window.open("/config");
                     }}
                 >
                     <FontAwesomeIcon icon={faSlidersH} />
