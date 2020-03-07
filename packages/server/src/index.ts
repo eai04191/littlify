@@ -2,6 +2,7 @@ import express from "express";
 import helmet from "helmet";
 import cors from "cors";
 import serverless from "serverless-http";
+import cookieParser from "cookie-parser";
 import router from "./routes/v1";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 require("dotenv").config({ path: require("find-config")(".env") });
@@ -17,6 +18,7 @@ if (!process.env.SPOTIFY_CLIENT_ID || !process.env.SPOTIFY_CLIENT_SECRET) {
 
 app.use(helmet())
     .use(cors())
+    .use(cookieParser())
     .use(express.urlencoded({ extended: true }))
     .use("/.netlify/functions/index/v1", router);
 
