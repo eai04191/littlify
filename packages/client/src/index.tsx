@@ -7,7 +7,7 @@ import axios from "axios";
 import Player from "./component/Player";
 import LoginScreen from "./component/LoginScreen";
 import NoStateScreen from "./component/NoStateScreen";
-import Config, { State as ConfigState } from "./component/Config";
+import Config, { IConfig as ConfigState } from "./component/Config";
 import history from "./history";
 
 interface Props {

@@ -116,7 +116,7 @@ export default class Player extends React.Component<Props, {}> {
                             </div>
                         </div>
                         <Controller
-                            state={this.props.state}
+                            state={{ ...this.props.state }}
                             player={this.props.player}
                         />
                     </div>

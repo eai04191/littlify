@@ -7,31 +7,112 @@ import {
     faPause,
     faPlay,
     faSlidersH,
+    faThumbsDown,
 } from "@fortawesome/free-solid-svg-icons";
 import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 
 import ExternalLink from "./ExternalLink";
-import { State as IConfig, Theme } from "./Config";
+import { ConfigI, Theme } from "./Config";
+import { DisLike, DisLikeType } from "../db";
 
 interface Props {
     state: Spotify.PlaybackState;
     player: Spotify.SpotifyPlayer;
 }
 
-export default class Controller extends React.Component<Props, {}> {
+interface State {
+    disLike: boolean;
+}
+
+export default class Controller extends React.Component<Props, State> {
+    private disLikes: DisLike;
+    private config: ConfigI;
+
+    constructor(props: Props) {
+        super(props);
+
+        this.config = JSON.parse(localStorage.config || "{}");
+        this.disLikes = new DisLike();
+        this.state = {
+            disLike: false,
+        };
+
+        this.onUpdateConfig = this.onUpdateConfig.bind(this);
+    }
+
     public componentDidMount() {
         window.addEventListener("storage", this.onUpdateConfig);
         this.onUpdateConfig();
+
+        const currentTrack = this.props.state.track_window.current_track;
+        this.onUpdateTrack({} as Spotify.Track, currentTrack);
     }
 
     public componentWillUnmount() {
         window.removeEventListener("storage", this.onUpdateConfig);
     }
 
-    private onUpdateConfig() {
-        const config: IConfig = JSON.parse(localStorage.config || "{}");
+    public componentDidUpdate(prevProps: Readonly<Props>) {
+        const prevTrack = prevProps.state.track_window.current_track;
+        const currentTrack = this.props.state.track_window.current_track;
+        if (currentTrack.uri !== prevTrack.uri) {
+            this.onUpdateTrack(prevTrack, currentTrack);
+        }
+    }
 
-        switch (config.theme) {
+    private async onUpdateTrack(
+        prevTrack: Spotify.Track,
+        currentTrack: Spotify.Track
+    ) {
+        console.log(
+            prevTrack.uri,
+            "/",
+            prevTrack.name,
+            "->",
+            currentTrack.uri,
+            "/",
+            currentTrack.name
+        );
+        const disLike = await this.disLikes.isDisLike(currentTrack);
+        console.log(
+            currentTrack.uri,
+            ":",
+            currentTrack.name,
+            "=> dislike:",
+            disLike
+        );
+        if (disLike && this.config.auto_skip) {
+            // NOTE: 0秒で即スキップすると失敗することがある
+            setTimeout(async () => {
+                console.log("skip:", currentTrack.uri, "/", currentTrack.name);
+                await this.props.player.nextTrack();
+
+                // FIXME: そもそもspotifyがnextTrack()に失敗することがある？
+                setTimeout(() => {
+                    if (
+                        this.props.state.track_window.current_track.uri ===
+                        currentTrack.uri
+                    ) {
+                        console.log(
+                            "skip seems failed, retrying:",
+                            currentTrack.uri,
+                            "/",
+                            currentTrack.name
+                        );
+                        this.props.player.nextTrack();
+                    }
+                }, 2500);
+            }, 1000);
+        } else {
+            this.setState({
+                disLike,
+            });
+        }
+    }
+
+    private onUpdateConfig() {
+        this.config = JSON.parse(localStorage.config || "{}");
+        switch (this.config.theme) {
             case Theme.DARK:
                 document.documentElement.dataset["theme"] = "dark";
                 break;
@@ -54,10 +135,14 @@ export default class Controller extends React.Component<Props, {}> {
                     document.documentElement.dataset["theme"] = "light";
                 }
         }
+        this.onUpdateTrack(
+            {} as Spotify.Track,
+            this.props.state.track_window.current_track
+        );
     }
 
     render() {
-        const state = this.props.state;
+        const { state } = this.props;
         const track = state.track_window.current_track;
         return (
             <div
@@ -73,6 +158,32 @@ export default class Controller extends React.Component<Props, {}> {
                     "dark:border-gray-700"
                 )}
             >
+                <div
+                    className={classNames(
+                        "flex-1",
+                        "py-3",
+                        "hover:text-gray-500",
+                        "dark:hover:text-gray-600"
+                    )}
+                    onClick={async () => {
+                        if (this.state.disLike) {
+                            await this.disLikes.unset(DisLikeType.TRACK, track);
+                            this.setState({
+                                disLike: false,
+                            });
+                        } else {
+                            await this.disLikes.set(DisLikeType.TRACK, track);
+                            this.setState({
+                                disLike: true,
+                            });
+                        }
+                    }}
+                >
+                    <FontAwesomeIcon
+                        icon={faThumbsDown}
+                        style={{ opacity: this.state.disLike ? 1 : 0.3 }}
+                    />
+                </div>
                 <div
                     className={classNames(
                         "flex-1",
@@ -129,7 +240,11 @@ export default class Controller extends React.Component<Props, {}> {
                         "dark:hover:text-gray-600"
                     )}
                     onClick={() => {
-                        window.open("/config");
+                        window.open(
+                            "/config",
+                            "_blank",
+                            "toolbar=0,location=0,menubar=0,width=960,height=600"
+                        );
                     }}
                 >
                     <FontAwesomeIcon icon={faSlidersH} />
