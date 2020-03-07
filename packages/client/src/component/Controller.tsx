@@ -61,10 +61,9 @@ export default class Controller extends React.Component<Props, {}> {
         return (
             <div
                 className={classNames(
-                    "controll-column",
+                    "controller-column",
                     "flex",
                     "items-center",
-                    "text-center",
                     "select-none",
                     "bg-gray-200",
                     "border-t",
@@ -74,8 +73,6 @@ export default class Controller extends React.Component<Props, {}> {
             >
                 <div
                     className={classNames(
-                        "flex-1",
-                        "py-4",
                         "hover:text-gray-500",
                         "dark:hover:text-gray-600"
                     )}
@@ -88,12 +85,10 @@ export default class Controller extends React.Component<Props, {}> {
                         this.props.player.seek(0);
                     }}
                 >
-                    <ChevronLeft className={classNames("m-auto")} size={16} />
+                    <ChevronLeft size={16} />
                 </div>
                 <div
                     className={classNames(
-                        "flex-1",
-                        "py-3",
                         "hover:text-gray-500",
                         "dark:hover:text-gray-600"
                     )}
@@ -102,21 +97,13 @@ export default class Controller extends React.Component<Props, {}> {
                     }}
                 >
                     {state.paused ? (
-                        <Play
-                            className={classNames("m-auto", "filled")}
-                            size={20}
-                        />
+                        <Play className={classNames("filled")} size={20} />
                     ) : (
-                        <Pause
-                            className={classNames("m-auto", "filled")}
-                            size={20}
-                        />
+                        <Pause className={classNames("filled")} size={20} />
                     )}
                 </div>
                 <div
                     className={classNames(
-                        "flex-1",
-                        "py-4",
                         "hover:text-gray-500",
                         "dark:hover:text-gray-600"
                     )}
@@ -124,12 +111,10 @@ export default class Controller extends React.Component<Props, {}> {
                         this.props.player?.nextTrack();
                     }}
                 >
-                    <ChevronRight className={classNames("m-auto")} size={16} />
+                    <ChevronRight size={16} />
                 </div>
                 <div
                     className={classNames(
-                        "flex-1",
-                        "py-4",
                         "hover:text-gray-500",
                         "dark:hover:text-gray-600"
                     )}
@@ -137,15 +122,12 @@ export default class Controller extends React.Component<Props, {}> {
                         window.open("/config");
                     }}
                 >
-                    <Sliders
-                        className={classNames("m-auto")}
-                        size={16}
-                    />
+                    <Sliders size={16} />
                 </div>
                 <ExternalLink
                     className={classNames(
                         "flex-none",
-                        "py-4",
+                        "h-full",
                         "px-8",
                         "hover:text-gray-500",
                         "dark:hover:text-gray-600"
@@ -154,10 +136,7 @@ export default class Controller extends React.Component<Props, {}> {
                         `${track.name}\r\n${track.artists[0].name} - ${track.album.name}\r\nhttps://open.spotify.com/track/${track.id}`
                     )}`}
                 >
-                    <Twitter
-                        className={classNames("m-auto", "filled")}
-                        size={16}
-                    />
+                    <Twitter className={classNames("filled")} size={16} />
                 </ExternalLink>
             </div>
         );
