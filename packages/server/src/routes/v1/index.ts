@@ -13,10 +13,6 @@ const formData = (obj: { [index: string]: string | undefined }) => {
     return data;
 };
 
-router.get("/", (req, res) => {
-    res.send("hi");
-});
-
 router.get("/login", (req, res) => {
     const state = req.query.state;
     res.cookie(stateKey, state);
@@ -67,7 +63,6 @@ router.get("/callback", (req, res) => {
     axios
         .post("https://accounts.spotify.com/api/token", formData(authData))
         .then(response => {
-            console.log("request response.status", response.status);
             if (!!response.data && response.status === 200) {
                 const body = response.data;
                 const accessToken = body.access_token,
@@ -80,10 +75,7 @@ router.get("/callback", (req, res) => {
                             Authorization: `Bearer ${accessToken}`,
                         },
                     })
-                    .then(response => {
-                        // NOTE: これログに残すのマズくない？
-                        console.log(response.data);
-                        // we can also pass the token to the browser to make requests from there
+                    .then(() => {
                         res.redirect(
                             `${process.env.CLIENT_URI}/?` +
                                 querystring.stringify({
