@@ -71,8 +71,12 @@ class App extends React.Component<Props, State> {
 
     injectSpotifyEvents = ({ refreshToken }: { refreshToken: string }) => {
         window.onSpotifyWebPlaybackSDKReady = () => {
+            const appName =
+                process.env.NODE_ENV === "development"
+                    ? "Littlify (Dev)"
+                    : "Littlify";
             const player = new Spotify.Player({
-                name: "Littlify",
+                name: appName,
                 volume: 0.15,
                 getOAuthToken: (cb: (accessToken: string) => void) => {
                     console.log("新しいアクセストークン取るよ");
