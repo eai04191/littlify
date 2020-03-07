@@ -3,7 +3,7 @@ import axios from "axios";
 import querystring from "querystring";
 const router = express.Router();
 
-const stateKey = "spotify_auth_state";
+const stateKey = "littlify_auth_state";
 
 const formData = (obj: { [index: string]: string | undefined }) => {
     const data = new URLSearchParams();
