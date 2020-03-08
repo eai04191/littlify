@@ -1,15 +1,13 @@
 import React from "react";
 import classNames from "classnames";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-    faCaretLeft,
-    faCaretRight,
-    faPause,
-    faPlay,
-    faSlidersH,
-    faThumbsDown,
-} from "@fortawesome/free-solid-svg-icons";
-import { faTwitter } from "@fortawesome/free-brands-svg-icons";
+    Play,
+    Pause,
+    ChevronLeft,
+    ChevronRight,
+    Sliders,
+    Twitter,
+} from "react-feather";
 
 import ExternalLink from "./ExternalLink";
 import { ConfigI, Theme } from "./Config";
@@ -147,10 +145,9 @@ export default class Controller extends React.Component<Props, State> {
         return (
             <div
                 className={classNames(
-                    "controll-column",
+                    "controller-column",
                     "flex",
                     "items-center",
-                    "text-center",
                     "select-none",
                     "bg-gray-200",
                     "border-t",
@@ -160,8 +157,6 @@ export default class Controller extends React.Component<Props, State> {
             >
                 <div
                     className={classNames(
-                        "flex-1",
-                        "py-3",
                         "hover:text-gray-500",
                         "dark:hover:text-gray-600"
                     )}
@@ -200,12 +195,10 @@ export default class Controller extends React.Component<Props, State> {
                         this.props.player.seek(0);
                     }}
                 >
-                    <FontAwesomeIcon icon={faCaretLeft} />
+                    <ChevronLeft size={16} />
                 </div>
                 <div
                     className={classNames(
-                        "flex-1",
-                        "py-3",
                         "hover:text-gray-500",
                         "dark:hover:text-gray-600"
                     )}
@@ -214,15 +207,13 @@ export default class Controller extends React.Component<Props, State> {
                     }}
                 >
                     {state.paused ? (
-                        <FontAwesomeIcon icon={faPlay} />
+                        <Play className={classNames("filled")} size={20} />
                     ) : (
-                        <FontAwesomeIcon icon={faPause} />
+                        <Pause className={classNames("filled")} size={20} />
                     )}
                 </div>
                 <div
                     className={classNames(
-                        "flex-1",
-                        "py-3",
                         "hover:text-gray-500",
                         "dark:hover:text-gray-600"
                     )}
@@ -230,12 +221,10 @@ export default class Controller extends React.Component<Props, State> {
                         this.props.player?.nextTrack();
                     }}
                 >
-                    <FontAwesomeIcon icon={faCaretRight} />
+                    <ChevronRight size={16} />
                 </div>
                 <div
                     className={classNames(
-                        "flex-1",
-                        "py-3",
                         "hover:text-gray-500",
                         "dark:hover:text-gray-600"
                     )}
@@ -247,12 +236,12 @@ export default class Controller extends React.Component<Props, State> {
                         );
                     }}
                 >
-                    <FontAwesomeIcon icon={faSlidersH} />
+                    <Sliders size={16} />
                 </div>
                 <ExternalLink
                     className={classNames(
                         "flex-none",
-                        "py-3",
+                        "h-full",
                         "px-8",
                         "hover:text-gray-500",
                         "dark:hover:text-gray-600"
@@ -261,7 +250,7 @@ export default class Controller extends React.Component<Props, State> {
                         `${track.name}\r\n${track.artists[0].name} - ${track.album.name}\r\nhttps://open.spotify.com/track/${track.id}`
                     )}`}
                 >
-                    <FontAwesomeIcon icon={faTwitter} />
+                    <Twitter className={classNames("filled")} size={16} />
                 </ExternalLink>
             </div>
         );

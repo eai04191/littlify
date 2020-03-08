@@ -12,6 +12,7 @@
         ],
         "block-no-empty": null,
         "unit-whitelist": [
+            "px",
             "em",
             "rem",
             "s"

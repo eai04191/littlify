@@ -1,7 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ChevronDown } from "react-feather";
 import { DisLike, DisLikeI } from "../db";
 
 const NavItems = {
@@ -296,7 +295,7 @@ export default class Config extends React.Component<{}, State> {
                                     "text-gray-700"
                                 )}
                             >
-                                <FontAwesomeIcon icon={faCaretDown} />
+                                <ChevronDown size={16} />
                             </div>
                         </div>
                     </label>
