@@ -59,7 +59,7 @@ class App extends React.Component<Props, State> {
             state: state,
         });
 
-        if (state.paused) {
+        if (!state || state.paused) {
             document.title = "Littlify";
         } else {
             const currentTrack = state.track_window.current_track;
