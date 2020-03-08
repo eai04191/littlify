@@ -372,7 +372,7 @@ export default class Config extends React.Component<{}, State> {
                                             "text-gray-700"
                                         )}
                                     >
-                                        <FontAwesomeIcon icon={faCaretDown} />
+                                        <ChevronDown size={16}/>
                                     </div>
                                 </div>
                             </label>

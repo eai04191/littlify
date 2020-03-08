@@ -7,6 +7,7 @@ import {
     ChevronRight,
     Sliders,
     Twitter,
+    ThumbsDown
 } from "react-feather";
 
 import ExternalLink from "./ExternalLink";
@@ -174,8 +175,8 @@ export default class Controller extends React.Component<Props, State> {
                         }
                     }}
                 >
-                    <FontAwesomeIcon
-                        icon={faThumbsDown}
+                    <ThumbsDown
+                        size={16}
                         style={{ opacity: this.state.disLike ? 1 : 0.3 }}
                     />
                 </div>
