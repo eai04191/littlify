@@ -3,3 +3,18 @@
 @import "tailwindcss/components";
 
 @import "tailwindcss/utilities";
+
+.filled {
+    fill: currentColor;
+}
+
+.controller-column {
+    height: 50px;
+}
+.controller-column > div {
+    @apply flex-1 h-full;
+}
+.controller-column > div > svg,
+.controller-column > a > svg {
+    @apply h-full m-auto;
+}
