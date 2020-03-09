@@ -6,7 +6,7 @@
 </div>
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 Little Spotify Controller
@@ -137,14 +137,15 @@ MIT
 
 ## Contributors ✨
 
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+これを作った素敵な人々([絵文字の説明](https://allcontributors.org/docs/ja/emoji-key)):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://mohemohe.dev"><img src="https://avatars3.githubusercontent.com/u/5028163?v=4" width="100px;" alt=""/><br /><sub><b>mohemohe</b></sub></a><br /><a href="#design-mohemohe" title="Design">🎨</a> <a href="https://github.com/eai04191/littlify/commits?author=mohemohe" title="Code">💻</a></td>
+    <td align="center"><a href="https://mizle.net"><img src="https://avatars1.githubusercontent.com/u/3516343?v=4" width="100px;" alt=""/><br /><sub><b>Irie Aoi</b></sub></a><br /><a href="https://github.com/eai04191/littlify/commits?author=eai04191" title="Code">💻</a> <a href="#design-eai04191" title="Design">🎨</a> <a href="https://github.com/eai04191/littlify/commits?author=eai04191" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://mohemohe.dev"><img src="https://avatars3.githubusercontent.com/u/5028163?v=4" width="100px;" alt=""/><br /><sub><b>mohemohe</b></sub></a><br /><a href="https://github.com/eai04191/littlify/commits?author=mohemohe" title="Code">💻</a> <a href="#design-mohemohe" title="Design">🎨</a></td>
     <td align="center"><a href="https://github.com/mfmfuyu"><img src="https://avatars1.githubusercontent.com/u/54523771?v=4" width="100px;" alt=""/><br /><sub><b>fuyu</b></sub></a><br /><a href="https://github.com/eai04191/littlify/commits?author=mfmfuyu" title="Code">💻</a></td>
   </tr>
 </table>
@@ -153,4 +154,4 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+このプロジェクトは[all-contributors](https://github.com/all-contributors/all-contributors)の仕様に準拠しています。どんな貢献も歓迎です！

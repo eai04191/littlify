@@ -6,13 +6,24 @@
   "commit": false,
   "contributors": [
     {
+      "login": "eai04191",
+      "name": "Irie Aoi",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/3516343?v=4",
+      "profile": "https://mizle.net",
+      "contributions": [
+        "code",
+        "design",
+        "doc"
+      ]
+    },
+    {
       "login": "mohemohe",
       "name": "mohemohe",
       "avatar_url": "https://avatars3.githubusercontent.com/u/5028163?v=4",
       "profile": "https://mohemohe.dev",
       "contributions": [
-        "design",
-        "code"
+        "code",
+        "design"
       ]
     },
     {
@@ -30,5 +41,6 @@
   "projectOwner": "eai04191",
   "repoType": "github",
   "repoHost": "https://github.com",
-  "skipCi": true
+  "skipCi": true,
+  "commitConvention": "none"
 }
