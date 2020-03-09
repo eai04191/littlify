@@ -1,5 +1,5 @@
 <div align="center">
-<img src="https://raw.githubusercontent.com/eai04191/littlify/doc/logo-256.png" width="150px"><br>
+<img src="https://raw.githubusercontent.com/wiki/eai04191/littlify/images/logo-256.png" width="150px"><br>
 
 # Littlify
 
@@ -14,7 +14,7 @@ Little Spotify Controller
 ## Motivation
 
 <div align="center">
-<img src="https://raw.githubusercontent.com/eai04191/littlify/doc/screenshot.png">
+<img src="https://raw.githubusercontent.com/wiki/eai04191/littlify/images/screenshot.png">
 </div>
 
 VSCodeなど使っている間に、今流れている曲が気になってSpotifyクライアントを見に行くことが多かった。
@@ -47,7 +47,7 @@ VSCodeなど使っている間に、今流れている曲が気になってSpoti
 
 PWAにも対応しています。
 
-![](https://raw.githubusercontent.com/eai04191/littlify/doc/pwa-install.png)
+![](https://raw.githubusercontent.com/wiki/eai04191/littlify/images/pwa-install.png)
 
 ## FAQ
 
