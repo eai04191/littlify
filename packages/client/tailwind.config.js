@@ -1,6 +1,6 @@
 module.exports = {
     theme: {
-        darkSelector: 'html[data-theme="dark"]',
+        darkSelector: ".theme-dark",
         extend: {
             maxWidth: {
                 "screen-1/2": "50vw"
