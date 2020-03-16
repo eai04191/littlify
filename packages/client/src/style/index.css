@@ -18,3 +18,18 @@
 .controller-column > a > svg {
     @apply h-full m-auto;
 }
+
+.w-25pc {
+    /* stylelint-disable-next-line */
+    width: 25%;
+}
+
+.max-w-screen-50vw {
+    /* stylelint-disable-next-line */
+    max-width: 50vw;
+}
+
+.max-h-screen-50vw {
+    /* stylelint-disable-next-line */
+    max-height: 50vw;
+}
