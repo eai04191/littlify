@@ -32,7 +32,7 @@ RUN \
     echo 'npx ts-node src/server-local.ts' | tee -a /etc/services.d/server/run ; \
     echo '#!/usr/bin/execlineb -P' | tee -a /etc/services.d/client/run ; \
     echo 'with-contenv' | tee -a /etc/services.d/client/run ; \
-    echo 'caddy --host 0.0.0.0 --port 80 --http-port 80 --root /littlify/packages/client/dist "proxy /api http://127.0.0.1:3000/.netlify/functions/index { transparent without /api }"' | tee -a /etc/services.d/client/run
+    echo 'caddy --host 0.0.0.0 --port 80 --http-port 80 --root /littlify/packages/client/dist "rewrite /config /" "proxy /api http://127.0.0.1:3000/.netlify/functions/index { transparent without /api }"' | tee -a /etc/services.d/client/run
 
 EXPOSE 80
 ENTRYPOINT ["/init"]
