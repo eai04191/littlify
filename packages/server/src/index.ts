@@ -1,11 +1,13 @@
-import express = require("express");
-import helmet = require("helmet");
-import cors = require("cors");
+import express from "express";
+import helmet from "helmet";
+import cors from "cors";
+import serverless from "serverless-http";
+import cookieParser from "cookie-parser";
 import router from "./routes/v1";
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 require("dotenv").config({ path: require("find-config")(".env") });
 
 const app = express();
-const port = process.env.PORT || 3000;
 
 if (!process.env.SPOTIFY_CLIENT_ID || !process.env.SPOTIFY_CLIENT_SECRET) {
     console.error(
@@ -16,13 +18,13 @@ if (!process.env.SPOTIFY_CLIENT_ID || !process.env.SPOTIFY_CLIENT_SECRET) {
 
 app.use(helmet())
     .use(cors())
+    .use(cookieParser())
     .use(express.urlencoded({ extended: true }))
-    .use("/v1/", router);
+    .use("/.netlify/functions/index/v1", router);
 
 app.get("/", function(_req, res) {
     res.redirect(301, "https://github.com/eai04191/littlify");
 });
 
-app.listen(port, () => {
-    console.log(`listening on port ${port}`);
-});
+export default app;
+exports.handler = serverless(app);

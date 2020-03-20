@@ -7,18 +7,42 @@
     "license": "MIT",
     "private": true,
     "scripts": {
-        "client:start": "yarn workspace client start",
         "client:build": "yarn workspace client build",
+        "client:lint": "eslint --ext .jsx,.js,.tsx,.ts packages/client/src",
+        "client:lint:fix": "yarn client:lint --fix",
+        "client:start": "yarn workspace client start",
         "client:watch": "yarn workspace client watch",
-        "server:start": "yarn workspace server start",
+        "lint": "run-p client:lint server:lint",
+        "lint:fix": "run-p client:lint:fix server:lint:fix",
         "server:build": "yarn workspace server build",
+        "server:lint": "eslint --ext .jsx,.js,.tsx,.ts packages/server/src",
+        "server:lint:fix": "yarn server:lint --fix",
+        "server:start": "yarn workspace server start",
         "watch": "run-p server:start client:watch"
     },
     "workspaces": [
         "packages/*"
     ],
     "devDependencies": {
+        "@typescript-eslint/eslint-plugin": "^2.19.2",
+        "@typescript-eslint/parser": "^2.19.2",
+        "eslint": "^6.8.0",
+        "eslint-config-prettier": "^6.10.0",
+        "eslint-plugin-prettier": "^3.1.2",
+        "eslint-plugin-react": "^7.18.3",
+        "husky": "^4.2.3",
+        "lint-staged": "^10.0.7",
         "npm-run-all": "^4.1.5",
         "prettier": "^1.19.1"
+    },
+    "lint-staged": {
+        "packages/{client,server}/src/**/*.{js,jsx,ts,tsx}": [
+            "eslint --fix"
+        ]
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
     }
 }

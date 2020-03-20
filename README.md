@@ -1,21 +1,25 @@
 <div align="center">
-<img src="https://raw.githubusercontent.com/eai04191/littlify/doc/logo-256.png" width="150px"><br>
+<img src="https://raw.githubusercontent.com/wiki/eai04191/littlify/images/logo-256.png" width="150px"><br>
 
 # Littlify
 
 </div>
+
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 Little Spotify Controller
 
 ## Motivation
 
 <div align="center">
-<img src="https://raw.githubusercontent.com/eai04191/littlify/doc/screenshot.png">
+<img src="https://raw.githubusercontent.com/wiki/eai04191/littlify/images/screenshot.png">
 </div>
 
 VSCodeなど使っている間に、今流れている曲が気になってSpotifyクライアントを見に行くことが多かった。
 
-見に行くのがめんどくさいので何を流しているかを常に表示したかったが、Spotifyクライアントのウィンドウは一定以下の多きさにならないので、邪魔だった。
+見に行くのがめんどくさいので何を流しているかを常に表示したかったが、Spotifyクライアントのウィンドウは一定以下の大きさにならないので、邪魔だった。
 
 そういうわけでコンパクトな今流れている曲を教えてくれるものが欲しかった。
 
@@ -35,15 +39,15 @@ VSCodeなど使っている間に、今流れている曲が気になってSpoti
 
 ## Try now
 
-**https://littlify.web.app/**
+**https://littlify.netlify.com/**
 
 **Spotify Premiumのアカウントが必要です。**
 
-常用する際は、Chromeアプリとして開くのがおすすめです。`chrome --app=https://littlify.web.app/`
+常用する際は、Chromeアプリとして開くのがおすすめです。`chrome --app=https://littlify.netlify.com/`
 
 PWAにも対応しています。
 
-![](https://raw.githubusercontent.com/eai04191/littlify/doc/pwa-install.png)
+![](https://raw.githubusercontent.com/wiki/eai04191/littlify/images/pwa-install.png)
 
 ## FAQ
 
@@ -130,3 +134,24 @@ yarn watch
 ## License
 
 MIT
+
+## Contributors ✨
+
+これを作った素敵な人々([絵文字の説明](https://allcontributors.org/docs/ja/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://mizle.net"><img src="https://avatars1.githubusercontent.com/u/3516343?v=4" width="100px;" alt=""/><br /><sub><b>Irie Aoi</b></sub></a><br /><a href="https://github.com/eai04191/littlify/commits?author=eai04191" title="Code">💻</a> <a href="#design-eai04191" title="Design">🎨</a> <a href="https://github.com/eai04191/littlify/commits?author=eai04191" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://mohemohe.dev"><img src="https://avatars3.githubusercontent.com/u/5028163?v=4" width="100px;" alt=""/><br /><sub><b>mohemohe</b></sub></a><br /><a href="https://github.com/eai04191/littlify/commits?author=mohemohe" title="Code">💻</a> <a href="#design-mohemohe" title="Design">🎨</a> <a href="#infra-mohemohe" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
+    <td align="center"><a href="https://github.com/mfmfuyu"><img src="https://avatars1.githubusercontent.com/u/54523771?v=4" width="100px;" alt=""/><br /><sub><b>fuyu</b></sub></a><br /><a href="https://github.com/eai04191/littlify/commits?author=mfmfuyu" title="Code">💻</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+このプロジェクトは[all-contributors](https://github.com/all-contributors/all-contributors)の仕様に準拠しています。どんな貢献も歓迎です！
