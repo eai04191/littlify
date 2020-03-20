@@ -109,7 +109,7 @@ export class DisLike extends DbBase<DisLikeI> {
             limit,
             skip: limit * (page - 1),
         });
-        console.log(result.docs);
+        console.log("limit:", limit, "page:", page, "result:", result.docs);
         return result.docs;
     }
 

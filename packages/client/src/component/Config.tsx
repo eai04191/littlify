@@ -358,7 +358,7 @@ export default class Config extends React.Component<{}, State> {
                                         )}
                                         value={"TRACK"}
                                     >
-                                        <option>TRACK</option>
+                                        <option value={"TRACK"}>TRACK</option>
                                     </select>
                                     <div
                                         className={classNames(
