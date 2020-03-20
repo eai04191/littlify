@@ -49,3 +49,13 @@
     /* text-gray-500 */
     background-color: #a0aec0;
 }
+
+.theme-dark #player-seekbar::-webkit-slider-thumb {
+    /* text-gray-200 */
+    background-color: #edf2f7;
+}
+
+.theme-dark #player-seekbar::-webkit-slider-thumb:hover {
+    /* text-gray-600 */
+    background-color: #718096;
+}
