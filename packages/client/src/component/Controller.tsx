@@ -7,7 +7,7 @@ import {
     ChevronRight,
     Sliders,
     Twitter,
-    ThumbsDown
+    ThumbsDown,
 } from "react-feather";
 
 import ExternalLink from "./ExternalLink";
@@ -169,9 +169,16 @@ export default class Controller extends React.Component<Props, State> {
                             });
                         } else {
                             await this.disLikes.set(DisLikeType.TRACK, track);
-                            this.setState({
-                                disLike: true,
-                            });
+                            this.setState(
+                                {
+                                    disLike: true,
+                                },
+                                () => {
+                                    if (this.config.skip_at_dislike) {
+                                        this.props.player?.nextTrack();
+                                    }
+                                }
+                            );
                         }
                     }}
                 >
