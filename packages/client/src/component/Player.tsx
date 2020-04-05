@@ -3,7 +3,7 @@ import classNames from "classnames";
 
 import MiniTrack from "./MiniTrack";
 import SpotifyURILink from "./SpotifyURILink";
-import Shortcut from "./shortcut";
+import Shortcut from "./Shortcut";
 import Controller from "./Controller";
 import Artists from "./Artists";
 
