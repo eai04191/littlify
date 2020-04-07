@@ -37,7 +37,7 @@ export default class Config extends React.Component<{}, State> {
         }
 
         // NOTE: どうせunloadしたらイベントリスナーが消えるから匿名関数でOK
-        window.addEventListener("beforeunload", (e) => {
+        window.addEventListener("beforeunload", e => {
             if (this.lock) {
                 e.preventDefault();
                 e.returnValue = "";
@@ -119,7 +119,10 @@ export default class Config extends React.Component<{}, State> {
                             "rounded-r"
                         )}
                         onClick={() => {
-                            localStorage.setItem("config", JSON.stringify(this.state));
+                            localStorage.setItem(
+                                "config",
+                                JSON.stringify(this.state)
+                            );
                             this.lock = false;
                             window.close();
                         }}

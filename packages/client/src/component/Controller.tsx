@@ -17,7 +17,26 @@ interface Props {
     player: Spotify.SpotifyPlayer;
 }
 
-export default class Controller extends React.Component<Props, {}> {
+interface State {
+    calculatedPosition: number;
+    updatedPosition: number;
+    onSeek: boolean;
+}
+
+export default class Controller extends React.Component<Props, State> {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    private intervalHandler?: any;
+
+    constructor(props: Props) {
+        super(props);
+
+        this.state = {
+            calculatedPosition: 0,
+            updatedPosition: 0,
+            onSeek: false,
+        };
+    }
+
     public componentDidMount() {
         window.addEventListener("storage", this.onUpdateConfig);
         this.onUpdateConfig();
@@ -25,6 +44,54 @@ export default class Controller extends React.Component<Props, {}> {
 
     public componentWillUnmount() {
         window.removeEventListener("storage", this.onUpdateConfig);
+    }
+
+    public componentDidUpdate(
+        prevProps: Readonly<Props>,
+        prevState: Readonly<{}>,
+        snapshot?: any
+    ) {
+        if (this.props.state.paused || this.state.onSeek) {
+            this.stopSeekBar();
+        } else if (!this.props.state.paused && !this.intervalHandler) {
+            this.startSeekBar();
+        } else {
+            // たぶん30秒ごとに飛んでくるstateで補正
+            // REF: https://github.com/spotify/web-playback-sdk/issues/86
+            let { calculatedPosition, updatedPosition } = this.state;
+            if (this.props.state.position !== updatedPosition) {
+                updatedPosition = this.props.state.position;
+                calculatedPosition = this.props.state.position;
+                this.setState({
+                    calculatedPosition,
+                    updatedPosition,
+                });
+            }
+        }
+    }
+
+    private stopSeekBar() {
+        clearInterval(this.intervalHandler);
+        this.intervalHandler = undefined;
+    }
+
+    private startSeekBar() {
+        const interval = 500;
+
+        this.intervalHandler = setInterval(() => {
+            let { calculatedPosition, updatedPosition } = this.state;
+            if (this.props.state.position !== updatedPosition) {
+                updatedPosition = this.props.state.position;
+                calculatedPosition = this.props.state.position;
+            } else {
+                calculatedPosition += interval;
+            }
+
+            this.setState({
+                calculatedPosition,
+                updatedPosition,
+            });
+        }, interval);
     }
 
     private onUpdateConfig() {
@@ -62,6 +129,7 @@ export default class Controller extends React.Component<Props, {}> {
             <div
                 className={classNames(
                     "controller-column",
+                    "relative",
                     "flex",
                     "items-center",
                     "select-none",
@@ -71,6 +139,34 @@ export default class Controller extends React.Component<Props, {}> {
                     "dark:border-gray-700"
                 )}
             >
+                <input
+                    id={"player-seekbar"}
+                    type="range"
+                    min="0"
+                    max={state.duration}
+                    value={this.state.calculatedPosition}
+                    onMouseDown={() => {
+                        this.setState({
+                            onSeek: true,
+                        });
+                    }}
+                    onChange={e => {
+                        this.setState({
+                            calculatedPosition: parseInt(
+                                e.currentTarget.value,
+                                10
+                            ),
+                        });
+                    }}
+                    onMouseUp={e => {
+                        this.props.player?.seek(
+                            parseInt(e.currentTarget.value, 10)
+                        );
+                        this.setState({
+                            onSeek: false,
+                        });
+                    }}
+                />
                 <div
                     className={classNames(
                         "hover:text-gray-500",
