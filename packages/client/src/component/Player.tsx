@@ -49,8 +49,8 @@ export default class Player extends React.Component<Props, {}> {
                             className={classNames(
                                 "self-center",
                                 "h-screen",
-                                "max-w-screen-1/2",
-                                "max-h-screen-w-1/2"
+                                "max-w-screen-50vw",
+                                "max-h-screen-50vw"
                             )}
                         />
                     </div>
@@ -125,7 +125,7 @@ export default class Player extends React.Component<Props, {}> {
                             "queue-column",
                             "flex",
                             "flex-col",
-                            "w-1/4",
+                            "w-25pc",
                             "border-l",
                             "dark:border-gray-700"
                         )}
