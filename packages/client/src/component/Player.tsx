@@ -1,5 +1,7 @@
-import React from "react";
+import React, { DragEvent } from "react";
 import classNames from "classnames";
+
+import axios from "axios";
 
 import MiniTrack from "./MiniTrack";
 import SpotifyURILink from "./SpotifyURILink";
@@ -10,6 +12,7 @@ import Artists from "./Artists";
 interface Props {
     state: Spotify.PlaybackState;
     player: Spotify.SpotifyPlayer;
+    accessToken: string;
 }
 
 export default class Player extends React.Component<Props, {}> {
@@ -17,10 +20,75 @@ export default class Player extends React.Component<Props, {}> {
 
     componentDidMount(): void {
         this.shortcut.enable();
+
+        this.handleDrop = this.handleDrop.bind(this);
     }
 
     componentWillUnmount(): void {
         this.shortcut.disable();
+    }
+
+    handleDragOver(e: DragEvent) {
+        e.preventDefault();
+    }
+
+    handleDrop(e: DragEvent) {
+        e.preventDefault();
+
+        const text = e.dataTransfer.getData("text");
+        if (!text) return;
+
+        const regexes = [
+            /^https:\/\/open\.spotify.com\/(\w+)\/(\w+)/,
+            /^spotify:(\w+):(\w+)$/,
+        ];
+
+        for (const regex of regexes) {
+            const matches = text.match(regex);
+            if (!matches) continue;
+
+            const type = matches[1];
+            const id = matches[2];
+
+            const spotifyUri = `spotify:${type}:${id}`;
+
+            if (type === "track") {
+                this.addToQueue(spotifyUri);
+                return;
+            }
+
+            if (spotifyUri === this.props.state.context.uri) return;
+
+            if (!["album", "artist", "playlist"].includes(type)) return;
+
+            axios.put(
+                `https://api.spotify.com/v1/me/player/play`,
+                {
+                    context_uri: spotifyUri,
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${this.props.accessToken}`,
+                    },
+                }
+            );
+        }
+    }
+
+    addToQueue(spotifyUri: string) {
+        if (spotifyUri === this.props.state.track_window.current_track.uri) {
+            return;
+        }
+
+        axios.post(
+            `https://api.spotify.com/v1/me/player/add-to-queue?uri=${spotifyUri}`,
+            {},
+            {
+                headers: {
+                    Authorization: `Bearer ${this.props.accessToken}`,
+                },
+            }
+        );
     }
 
     render() {
@@ -32,7 +100,11 @@ export default class Player extends React.Component<Props, {}> {
         nextTracks.pop();
         return (
             <>
-                <div className={classNames("flex", "border-gray-400")}>
+                <div
+                    onDragOver={this.handleDragOver}
+                    onDrop={this.handleDrop}
+                    className={classNames("flex", "border-gray-400")}
+                >
                     <div
                         className={classNames(
                             "jucket-column",

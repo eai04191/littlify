@@ -186,6 +186,7 @@ class App extends React.Component<Props, State> {
                         <Player
                             state={this.state.state}
                             player={this.state.player}
+                            accessToken={this.state.accessToken}
                         />
                     ) : (
                         <NoStateScreen />
