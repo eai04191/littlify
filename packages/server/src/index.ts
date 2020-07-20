@@ -22,7 +22,7 @@ app.use(helmet())
     .use(express.urlencoded({ extended: true }))
     .use("/.netlify/functions/index/v1", router);
 
-app.get("/", function(_req, res) {
+app.get("/", function (_req, res) {
     res.redirect(301, "https://github.com/eai04191/littlify");
 });
 

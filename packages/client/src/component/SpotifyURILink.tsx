@@ -7,8 +7,11 @@ interface Props {
     className?: string;
 }
 
-export default class SpotifyURILink extends React.Component<Props, {}> {
-    render() {
+export default class SpotifyURILink extends React.Component<
+    Props,
+    Record<string, unknown>
+> {
+    render(): JSX.Element {
         return (
             <a
                 href={this.props.uri}

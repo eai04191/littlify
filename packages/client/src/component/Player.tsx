@@ -12,7 +12,10 @@ interface Props {
     player: Spotify.SpotifyPlayer;
 }
 
-export default class Player extends React.Component<Props, {}> {
+export default class Player extends React.Component<
+    Props,
+    Record<string, unknown>
+> {
     shortcut = new Shortcut(this.props.player);
 
     componentDidMount(): void {
@@ -23,7 +26,7 @@ export default class Player extends React.Component<Props, {}> {
         this.shortcut.disable();
     }
 
-    render() {
+    render(): JSX.Element {
         const state = this.props.state;
         const track = state.track_window.current_track;
         const nextTracks = state.track_window.next_tracks;

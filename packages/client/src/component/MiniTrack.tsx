@@ -7,8 +7,11 @@ interface Props {
     track: SpotifyState.Track;
 }
 
-export default class MiniTrack extends React.Component<Props, {}> {
-    render() {
+export default class MiniTrack extends React.Component<
+    Props,
+    Record<string, unknown>
+> {
+    render(): JSX.Element {
         return (
             <div className={classNames("flex", "h-12")}>
                 <img

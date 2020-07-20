@@ -4,7 +4,7 @@ import ExternalLink from "./ExternalLink";
 import classNames from "classnames";
 
 export default class LoginScreen extends React.Component {
-    render() {
+    render(): JSX.Element {
         return (
             <>
                 <h1>Littlify</h1>

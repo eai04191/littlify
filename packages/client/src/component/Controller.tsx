@@ -17,13 +17,16 @@ interface Props {
     player: Spotify.SpotifyPlayer;
 }
 
-export default class Controller extends React.Component<Props, {}> {
-    public componentDidMount() {
+export default class Controller extends React.Component<
+    Props,
+    Record<string, unknown>
+> {
+    public componentDidMount(): void {
         window.addEventListener("storage", this.onUpdateConfig);
         this.onUpdateConfig();
     }
 
-    public componentWillUnmount() {
+    public componentWillUnmount(): void {
         window.removeEventListener("storage", this.onUpdateConfig);
     }
 
@@ -55,7 +58,7 @@ export default class Controller extends React.Component<Props, {}> {
         }
     }
 
-    render() {
+    render(): JSX.Element {
         const state = this.props.state;
         const track = state.track_window.current_track;
         return (

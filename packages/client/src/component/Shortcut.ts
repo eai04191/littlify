@@ -63,16 +63,16 @@ export default class Shortcut {
         this.keyDownHandler = this.keyDownHandler.bind(this);
     }
 
-    enable() {
+    enable(): void {
         window.addEventListener("keydown", this.keyDownHandler);
     }
 
-    disable() {
+    disable(): void {
         window.removeEventListener("keydown", this.keyDownHandler);
     }
 
-    keyDownHandler(e: KeyboardEvent) {
-        const shortcutKey = this.shortcutKeys.find(shortcutKey => {
+    keyDownHandler(e: KeyboardEvent): void {
+        const shortcutKey = this.shortcutKeys.find((shortcutKey) => {
             for (const prop of this.properties) {
                 // コンビネーションキーが指定されていない場合は押されてない事を確認する
                 if (
@@ -98,8 +98,8 @@ export default class Shortcut {
         this.executeCommand(shortcutKey.command);
     }
 
-    executeCommand(name: string) {
-        const command = this.commands.find(c => c.name === name);
+    executeCommand(name: string): void {
+        const command = this.commands.find((c) => c.name === name);
         if (!command) return;
         command.callback();
     }

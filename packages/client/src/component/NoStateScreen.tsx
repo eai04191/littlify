@@ -2,7 +2,7 @@ import React from "react";
 import tutorial from "../images/spotify-connect.png";
 
 export default class NoStateScreen extends React.Component {
-    render() {
+    render(): JSX.Element {
         return (
             <>
                 <p>

@@ -13,10 +13,13 @@ export interface State {
     theme?: Theme;
 }
 
-export default class Config extends React.Component<{}, State> {
+export default class Config extends React.Component<
+    Record<string, unknown>,
+    State
+> {
     private lock = true;
 
-    constructor(props: {}) {
+    constructor(props: Record<string, unknown>) {
         super(props);
 
         this.state = {
@@ -25,7 +28,7 @@ export default class Config extends React.Component<{}, State> {
         };
     }
 
-    componentDidMount() {
+    componentDidMount(): void {
         try {
             const state = JSON.parse(localStorage.config || "{}");
             if (Object.keys(state).length > 0) {
@@ -46,7 +49,7 @@ export default class Config extends React.Component<{}, State> {
         });
     }
 
-    render() {
+    render(): JSX.Element {
         return (
             <div>
                 <div>
@@ -54,7 +57,7 @@ export default class Config extends React.Component<{}, State> {
                         <input
                             type={"checkbox"}
                             checked={!!this.state.auto_auth}
-                            onChange={e => {
+                            onChange={(e) => {
                                 this.setState({
                                     auto_auth: e.target.checked,
                                 });
@@ -71,7 +74,7 @@ export default class Config extends React.Component<{}, State> {
                                 className="appearance-none bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                 id="grid-state"
                                 value={this.state.theme}
-                                onChange={e => {
+                                onChange={(e) => {
                                     this.setState({
                                         theme: e.target.value as Theme,
                                     });
@@ -119,7 +122,10 @@ export default class Config extends React.Component<{}, State> {
                             "rounded-r"
                         )}
                         onClick={() => {
-                            localStorage.setItem("config", JSON.stringify(this.state));
+                            localStorage.setItem(
+                                "config",
+                                JSON.stringify(this.state)
+                            );
                             this.lock = false;
                             window.close();
                         }}

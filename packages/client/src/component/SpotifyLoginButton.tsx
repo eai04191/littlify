@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 
 export default class SpotifyLoginButton extends React.Component {
-    render() {
+    render(): JSX.Element {
         return (
             <>
                 <a

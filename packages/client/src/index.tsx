@@ -63,7 +63,7 @@ class App extends React.Component<Props, State> {
             document.title = "Littlify";
         } else {
             const currentTrack = state.track_window.current_track;
-            const artists = currentTrack.artists.map(v => v.name).join(", ");
+            const artists = currentTrack.artists.map((v) => v.name).join(", ");
 
             document.title = `${currentTrack.name} · ${artists}`;
         }
@@ -84,7 +84,7 @@ class App extends React.Component<Props, State> {
                         .get(`${process.env.SERVER_URI}/v1/refresh_token`, {
                             params: { refresh_token: refreshToken },
                         })
-                        .then(res => {
+                        .then((res) => {
                             if (!res.data.access_token) {
                                 throw Error(
                                     "res.data.access_token is notfound"
@@ -109,7 +109,7 @@ class App extends React.Component<Props, State> {
                                 }
                             );
                         })
-                        .catch(error =>
+                        .catch((error) =>
                             console.log(
                                 "新しいアクセストークンの取得中にエラー",
                                 error
@@ -203,12 +203,12 @@ ReactDOM.render(
         <Route
             path={"/config"}
             exact={true}
-            render={props => <Config {...props} />}
+            render={(props) => <Config {...props} />}
         />
         <Route
             path={"/"}
             exact={true}
-            render={props => (
+            render={(props) => (
                 <App qs={queryString.parse(props.location.search)} />
             )}
         />

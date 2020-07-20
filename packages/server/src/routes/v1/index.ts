@@ -7,13 +7,16 @@ const stateKey = "littlify_auth_state";
 
 const formData = (obj: { [index: string]: string | undefined }) => {
     const data = new URLSearchParams();
-    Object.keys(obj).forEach(key => {
+    Object.keys(obj).forEach((key) => {
         data.append(key, `${obj[key]}`);
     });
     return data;
 };
 
 router.get("/login", (req, res) => {
+    if (typeof req.query.state !== "string") {
+        throw Error(`invalid query: "state"`);
+    }
     const state = req.query.state;
     res.cookie(stateKey, state);
 
@@ -34,8 +37,14 @@ router.get("/login", (req, res) => {
 });
 
 router.get("/callback", (req, res) => {
-    const code = req.query.code || null;
-    const state = req.query.state || null;
+    if (
+        typeof req.query.code !== "string" ||
+        typeof req.query.state !== "string"
+    ) {
+        throw Error(`invalid query: "code" or "state"`);
+    }
+    const code = req.query.code;
+    const state = req.query.state;
     const storedState = req.cookies ? req.cookies[stateKey] : null;
 
     const errRes = (reason: string) => {
@@ -62,7 +71,7 @@ router.get("/callback", (req, res) => {
 
     axios
         .post("https://accounts.spotify.com/api/token", formData(authData))
-        .then(response => {
+        .then((response) => {
             if (!!response.data && response.status === 200) {
                 const body = response.data;
                 const accessToken = body.access_token,
@@ -84,7 +93,7 @@ router.get("/callback", (req, res) => {
                                 })
                         );
                     })
-                    .catch(e => {
+                    .catch((e) => {
                         console.error(e);
                         errRes("malformed_token");
                     });
@@ -92,7 +101,7 @@ router.get("/callback", (req, res) => {
                 errRes("invalid_token");
             }
         })
-        .catch(e => {
+        .catch((e) => {
             console.log("request error", e);
             errRes("internal_server_error");
         });
@@ -100,6 +109,9 @@ router.get("/callback", (req, res) => {
 
 router.get("/refresh_token", (req, res) => {
     // requesting access token from refresh token
+    if (typeof req.query.refresh_token !== "string") {
+        throw Error(`invalid query: "refresh_token"`);
+    }
     const refreshToken = req.query.refresh_token;
 
     const refreshData = {
@@ -116,7 +128,7 @@ router.get("/refresh_token", (req, res) => {
                     ).toString("base64"),
             },
         })
-        .then(response => {
+        .then((response) => {
             if (response.status === 200) {
                 const body = response.data;
                 const accessToken = body.access_token;
@@ -127,7 +139,7 @@ router.get("/refresh_token", (req, res) => {
                 throw Error("invalid status code");
             }
         })
-        .catch(e => {
+        .catch((e) => {
             console.error(e);
             res.status(500);
         });

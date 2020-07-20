@@ -7,8 +7,11 @@ interface Props {
     className?: string;
 }
 
-export default class ExternalLink extends React.Component<Props, {}> {
-    render() {
+export default class ExternalLink extends React.Component<
+    Props,
+    Record<string, unknown>
+> {
+    render(): JSX.Element {
         return (
             <a
                 href={this.props.href}
