@@ -27,6 +27,7 @@
         "typescript": "^3.7.5"
     },
     "dependencies": {
+        "@mebtte/react-lrc": "^0.2.2",
         "autoprefixer": "^9.7.4",
         "axios": "^0.19.2",
         "classnames": "^2.2.6",

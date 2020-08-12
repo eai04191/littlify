@@ -1,0 +1,327 @@
+{
+    "message": {
+        "header": {
+            "status_code": 200,
+            "execute_time": 0.129,
+            "pid": 53,
+            "surrogate_key_list": []
+        },
+        "body": {
+            "macro_calls": {
+                "track.lyrics.get": {
+                    "message": {
+                        "header": {
+                            "status_code": 200,
+                            "execute_time": 0.021684885025024
+                        },
+                        "body": {
+                            "crowd_lyrics_list": [],
+                            "lyrics": {
+                                "lyrics_id": 21027838,
+                                "can_edit": 0,
+                                "locked": 0,
+                                "published_status": 5,
+                                "action_requested": "lyrics_richsync_added",
+                                "verified": 0,
+                                "restricted": 0,
+                                "instrumental": 0,
+                                "explicit": 0,
+                                "lyrics_body": "見つめあうさざ波は\n君と交わす message\nこの青い海でつながる\n光の道標\n\n優しい人に出会えてるかな\n今、笑えてるかな\n星明かり凪ぐ淋し気な瞳に\n輝きを満たして\n\nI'm close to you\nいつも傍にいる\n明日が見えない夜も\n心で呼びかけてるよ\nPlease, stay with me\nどうか諦めずに\nいつか手を取りあえる朝まで\n\n過ちも抱きとめる\nあの強さ、目映さを\n私から守れるような\n光になりたい\n\n潮騒ほどく願いは羅針\nきっと道は開く\nだから信じて重なる未来\nこの青の行方を\n\nI'm close to you\n同じ星の下 耳を澄ます横顔\n繰り返し思い描く\nPlease, feel my breath\nどうかその時まで\n旅立つ夢の中で会おうね\n\nI'm close to you\nいつも傍にいる\n明日が見えない夜も\n心で呼びかけてるよ\nPlease, stay with me\nどうか諦めずに\nいつか手を取りあえる朝まで\n旅立つ夢の中で会おうね",
+                                "lyrics_language": "ja",
+                                "lyrics_language_description": "Japanese",
+                                "script_tracking_url": "https://tracking.musixmatch.com/t1.0/m_js/e_0/sn_0/l_21027838/su_0/rs_0/tr_3vUCAIxx_Y6tPx_j5gFtIgHWUxpBk966rNDHBTc83gPq6ZonDPeB3j60c_SIL7uQcgpXdLGFo-n30oCRhdXLicfNRt7mVGM-SNYR7qpWraXqZBNSl1MuoqcZ9yHN3M0b_DyGNB-z4bcRf4jTiPSZHoeUe8Snehw3ZKqK6k0dqZxnBqh1hRqVlXfLvsu3BrMudjSrlhow2llXRxcNyuFA9yLWXjzyFSrXzHObfBLsLl5fGXKcmPqFA0aWmiQAX3LeVxgoa-6tXpP1-9JCk81pkIKAQ-9fwAdv72rNNG7a0XtkpdlvIlTMQjNzr1j18nI-KNkeOhsBKoWYEg3x50xalZxpLxdDVX_4gryVrFFz0A3qQoFKlhEKcPFXVE8G60IrFKWUCYRCmnVAVM3h8fCd3XPRKDgT1DI_a7b3wAinCMm1yB33rDEdzNA5iEBfI3pvKsX5KSOhUUcpvoRTSHcBybsFDWMYysrDkohpuaXP15OhtaOER56SFujW8Phd7oRXQRJ2RcvhsB89uxsSoVRl7Q72CnCBYkFdz2mpTfrPPFcz7WvAqerNoEnokMlIpyuSBWtfEhX61OAe6MazNt_k/",
+                                "pixel_tracking_url": "https://tracking.musixmatch.com/t1.0/m_img/e_0/sn_0/l_21027838/su_0/rs_0/tr_3vUCANhbK0zuubRo5XgjQZRdJ8IT6AEzHlFED3XK1WsFMWDuof4hfV4TsDNlYEHAICbtWWLKQVCtCGchgpan3c7QqmS0RVe2jpHsjA5x1n4o9icb2hvnMEK4NoCeUgvTE_j8-ZhdxnyOHv1ddLZQpY9LzwniiFG6-Mi3bOJHNsspxw1hmhp02riyPR5UvABWG4y0rmz627KPE0KoXg3HM-1ky4Tp2_HKAlp9nxlZD41Rej1eOFecVXfyRXLGDPsE7pSzk7hwsKt71UhDWE_tuVoLokEFkVLZvBEH256LZrzo4VJR4KXVFvyUcdRv2pjyf_fvAZcQmi2xe9HAzD-a5nKZqov5nMaCMOJL2dUlquNa4n3amkRK_uf9uNBxgVB6rO_VLme_61Z0ni80W8D731E_BXubnFeYbUh2Ad9LY9lUi7xEioJJT61PNA29AWyLo12nMamhaDsF9wlfOmo7N915u7NTVsBWXzuIX1ffDOFj-IJ2vcn_uk4Sl5UDxZlIrJzeI1p-fViXvb4ttJV3FyU78XQCLuV8WcfS3w_SqRjsq8HPMX7J01eOTsW3AbCYcGB9fQQhhOVw1bH3BVgb/",
+                                "html_tracking_url": "https://tracking.musixmatch.com/t1.0/m_html/e_0/sn_0/l_21027838/su_0/rs_0/tr_3vUCAGFR6_U_IX-IkK6RATc97cbgexCE6KmZhMXTpwIq4heH0o0H1Ph4k7Q8iq3Gf4ebNsF9JLkqLtWLI0ff6OVRXogu5Y5LT0q5sM1heMOykIKjJ-qCZtKcy7OZcPVqi4a3r1rxCuRPY0di1xifkj6feSo4dH6tSuIK5YCKHnMPpAgjRVzh4digXVOQ1TfkLG4bn_PHMjZSt1KeOWOUG-bnQ_eWWhoB-XP7e-SrZb8PzbXZqVKjYJnt7vwa-hwBBj-jEQaPR1mYQXe6toTqHybo6iIz5j64x97tAgibVR3sLj-0nV5C8fqin31cqd-M1HbnliupdCKXBiST7MnPCRGdd4tQkzMuOy60W6f0dtuIBv_8_ZW57MrNw7DNBlixUEklOrT0iZuuVxY2aAjrefrCCbEmqJ70XZUNfZrDHjp5LKs6W62Lr0vmtH30ngXn7nGFE43Gb-gSFbjYS8a0x7FME2bfm-tLJsd5WqYgcOza_4BwMzKv5PrHH9gSvsQHJjK8H0ENS1TL3jFbjBm9oMHK_Lz8pV-chIet-wGqmrS6ealFg9A6goUZyEnoCfVgf87H6lZAflyhP6Ff_Dvx/",
+                                "lyrics_copyright": "Writer(s): Kodama Saori, Takahiro Yamada\n",
+                                "writer_list": [],
+                                "publisher_list": [],
+                                "backlink_url": "https://www.musixmatch.com/lyrics/%E9%B9%BF%E4%B9%83/%E5%85%89%E3%81%AE%E9%81%93%E6%A8%99?utm_source=application&utm_campaign=api&utm_medium=musixmatch%3A1409612667678",
+                                "updated_time": "2020-02-25T13:58:56Z",
+                                "lyrics_user": {
+                                    "user": {
+                                        "uaid": "3vUCAKq2oaiUz-R9hmP8DneYCCy7uzhr_pUyCfEOzbm-Hfmj43XtQFDjfALrr85DSMak9U9dr_SjQLFJbGkc28zg12DUZRMyvxT5-_Rn9QDTZtX8yADRkrgrkh7CLq5e-zYtogC2Ks8FLwdZyDxeF_SYXbs",
+                                        "is_mine": 0,
+                                        "user_name": "Negative Magenta",
+                                        "user_profile_photo": "https://lh3.googleusercontent.com/-cI07G0Zm1Q4/AAAAAAAAAAI/AAAAAAAAA68/AMZuuclL075PUJ3vCQLDj7c8iyHfQe0yIg/s50/photo.jpg",
+                                        "has_private_profile": 0,
+                                        "score": 92322,
+                                        "position": 70,
+                                        "weekly_score": 1077,
+                                        "level": "top",
+                                        "key": "1e2c58ccde5da7586e3ae84e2df52b0ca6d2445dda4ca6faa32765f2e35d2c73",
+                                        "rank_level": 57,
+                                        "points_to_next_level": 1678,
+                                        "ratio_to_next_level": 44.07,
+                                        "rank_name": "hero",
+                                        "next_rank_name": "king",
+                                        "ratio_to_next_rank": 90,
+                                        "rank_color": "AD86FF",
+                                        "rank_colors": {
+                                            "rank_color_10": "F9EFFF",
+                                            "rank_color_50": "D2AFFE",
+                                            "rank_color_100": "AD86FF",
+                                            "rank_color_200": "8F68E1"
+                                        },
+                                        "rank_image_url": "https://static.musixmatch.com/badges/rank_icons/hero.png",
+                                        "next_rank_color": "D4A34B",
+                                        "next_rank_colors": {
+                                            "rank_color_10": "FFF4DE",
+                                            "rank_color_50": "EFCA87",
+                                            "rank_color_100": "D4A34B",
+                                            "rank_color_200": "B78436"
+                                        },
+                                        "next_rank_image_url": "https://static.musixmatch.com/badges/rank_icons/king.png",
+                                        "counters": {
+                                            "lyrics_subtitle_added": 4332,
+                                            "lyrics_favourite_added": 112,
+                                            "lyrics_to_add": 2,
+                                            "track_translation": 541,
+                                            "lyrics_ai_phrases_not_related_no": 1,
+                                            "lyrics_missing": 2477,
+                                            "lyrics_implicitly_ok": 5,
+                                            "lyrics_changed": 2550,
+                                            "lyrics_report_completely_wrong": 4,
+                                            "lyrics_ok": 11311,
+                                            "lyrics_music_id": 8,
+                                            "vote_bonuses": 1645,
+                                            "lyrics_richsync_added": 4,
+                                            "lyrics_ranking_change": 6543,
+                                            "lyrics_ai_mood_analysis_v3_value": 70,
+                                            "lyrics_ai_ugc_language": 67,
+                                            "evaluation_curator_test": 4,
+                                            "vote_maluses": 2,
+                                            "lyrics_ko": 89,
+                                            "translation_ok": 3,
+                                            "track_influencer_bonus_moderator_vote": 1,
+                                            "track_structure": 15064,
+                                            "track_complete_metadata": 118
+                                        },
+                                        "moderator": true,
+                                        "academy_completed": false
+                                    }
+                                },
+                                "lyrics_verified_by": []
+                            }
+                        }
+                    }
+                },
+                "track.snippet.get": {
+                    "message": {
+                        "header": {
+                            "status_code": 200,
+                            "execute_time": 0.022897005081177
+                        },
+                        "body": {
+                            "snippet": {
+                                "snippet_id": 21027838,
+                                "snippet_language": "ja",
+                                "restricted": 0,
+                                "instrumental": 0,
+                                "snippet_body": "Please, feel my breath",
+                                "script_tracking_url": "https://tracking.musixmatch.com/t1.0/m_js/e_0/sn_1/l_21027838/su_0/rs_0/tr_3vUCAEMrcNNWR7TVOGURZqGkrbtT7vqfOtCW8BBl_hp2Ic9PA7GCpcaFYVFhSboTOHSOsFENOQsB1AM-1ataKBpDDIWSdNy6CZUkgZ5wO55uXEaRV0dhWf-_RIsQPyZmn2Qwm5L_joL5izH7fV4WVRAzaC7F5TenR7yYfAMb2sDomRn-9PXoYOpglTXzSymr6x6iy16qoZOvrwTHuJ7ZBYsmKxkxAZ-utO18HHtrd-FSMZYfZXfy6qIdFDV8u54YRDDKYY1k5hF5D4Kxo-od5VnQOAm1YvdpndaBZcjI5RSKrYwtU1O15Y3JhihO5RYhMy_VG3SSr7NkAwvnhJMCiZeq6oDO8tl4GSuYsEUdINhR2M4dX8xby1LC1aClFB4FdweZOaBAD8V8BpFrzuvdy-Z7mZhajqZ89euvB4Nwb2LfHrlOD9u-_0TFYpAE-HhO9TBwD6W2SDgryD6iu8pCAxYVc3HLhLtqle9MzMkvAgEVNOAH3K7b6SJXHmq8NwWVLUB9d_nvs4WvEVBaRKl-2rUq8-ZoCrVXc7PWH4ztRET_7WgCjJQPJkgXBmxN06x2hfe0VcNKGgCBZxSWx3cp/",
+                                "pixel_tracking_url": "https://tracking.musixmatch.com/t1.0/m_img/e_0/sn_1/l_21027838/su_0/rs_0/tr_3vUCAN63xO7V9I7DtY0Dd_lajGue49QgWtyZOp2QEgHDejW6wt2iXDPRjyjyP_1khSdN62-oUBO2Yq6HfzNVwDFI2VpRldeFSNbHXzkXgWdWlsx28n3xI8wwBRdGbYq2miUnfibdZ9IFHMGbV_ajWCRb8zPLjL8FSet9gy_0b-z17DhpHj9Xb2lTRoRvO9fPUAi7wrM6xFffM6-Bels1obr4KnC_Yw-BzMsXBoSZq-9EkUKhXtbxQaA4roCWkdTykZwuaJ8DQBi20M1xYT2TKABfa-wMY1xnmAMFSqf3RCwxjbgNnq0kp8QJcbZR4merQlhhTgMPvHdoxjl7MO166BFCN_v1VFTrPnsQzZQimIoe82Ff8_htXunxTHBHJd64Ld5H-153MGyvKWm-29XpmrhytiA2U_5bIIySI-y1wIukV46oFBP8IUJvk6No2qSUGosUWYomg8muLMQct59nSgr8hpcb8YtACBseMOe8p_4MmOexCYW5YYOMXbaHYBaKVj8Q5vK7SPullbq9zlwN20RSaMkDbY8kHrvKj-L1TsTkKsnNdL_GzX147244HZJZyBNvKnXbh1eFfAOKrjHj/",
+                                "html_tracking_url": "https://tracking.musixmatch.com/t1.0/m_html/e_0/sn_1/l_21027838/su_0/rs_0/tr_3vUCAAxt00bLGlFSMKx_RVu2PcfSszdl0WGqPD-p5TFKgEOLTkaTl-TL1mzvGxmMmOwWSiEqdTnwFtcLN-gcDfPg7T3ZIlcU50ZP15Orem3TZ7GNm_HFKvCULuCcHHaRJ6unrkJa_u26HvCUopjd8vWb50r6gCfVMEmZgfBk6iowim3r5mzrN4apY83rKDKHRbMZ18bnRXW6ucLganjnf5OjfeVvN9A73WJA-VXTisJYDR2sauTuU5MOCThyeFRtv4b9Eoa8q0bR_vhR_1ZoKuOYae4KN1aLZP7WVBCHa-ClgjKq-2NBw64j5DMtu4oMH22a77cg_IKg4HLfOe7rh4zUjAa2R5QrjUzlK-j2shnJmZuptTNomxyHE1W560-TelqvkFxRZuWu55pTBalnNlMCaRGUg9KPrZqdFIwMEXMOEf7IRzUYlsK0rywiOoV-4cHfkReRhtAvmonJJx-EW53cuegFGN5ZlEjXHjWX5FQVPBnyqPpp3UwqpSTK3QI5B44iRGf-TNaHgZmf5L2fgu80uoaWCpwItGBEsAtbsdGoAucoIHDhZ_LScEk3jcmIWdZylyQMfqQQJDKbCxAN/",
+                                "updated_time": "2020-02-25T13:58:56Z"
+                            }
+                        }
+                    }
+                },
+                "track.subtitles.get": {
+                    "message": {
+                        "header": {
+                            "status_code": 200,
+                            "available": 1,
+                            "execute_time": 0.017652988433838,
+                            "instrumental": 0
+                        },
+                        "body": {
+                            "subtitle_list": [
+                                {
+                                    "subtitle": {
+                                        "subtitle_id": 32040191,
+                                        "restricted": 0,
+                                        "subtitle_body": "[00:15.18] 見つめあうさざ波は\n[00:20.88] 君と交わす message\n[00:26.35] この青い海でつながる\n[00:32.34] 光の道標\n[00:37.99] 優しい人に出会えてるかな\n[00:43.54] 今、笑えてるかな\n[00:49.21] 星明かり凪ぐ淋し気な瞳に\n[00:54.90] 輝きを満たして\n[01:00.56] I'm close to you\n[01:05.92] いつも傍にいる\n[01:11.92] 明日が見えない夜も\n[01:17.05] 心で呼びかけてるよ\n[01:23.58] Please, stay with me\n[01:28.34] どうか諦めずに\n[01:34.38] いつか手を取りあえる朝まで\n[01:43.77] \n[01:51.24] 過ちも抱きとめる\n[01:56.45] あの強さ、目映さを\n[02:02.40] 私から守れるような\n[02:08.10] 光になりたい\n[02:13.95] 潮騒ほどく願いは羅針\n[02:19.34] きっと道は開く\n[02:25.01] だから信じて重なる未来\n[02:30.74] この青の行方を\n[02:36.86] I'm close to you\n[02:41.85] 同じ星の下 耳を澄ます横顔\n[02:53.16] 繰り返し思い描く\n[02:59.20] Please, feel my breath\n[03:04.26] どうかその時まで\n[03:10.01] 旅立つ夢の中で会おうね\n[03:19.09] \n[03:47.49] I'm close to you\n[03:52.46] いつも傍にいる\n[03:58.38] 明日が見えない夜も\n[04:03.77] 心で呼びかけてるよ\n[04:10.13] Please, stay with me\n[04:15.12] どうか諦めずに\n[04:21.08] いつか手を取りあえる朝まで\n[04:32.26] 旅立つ夢の中で会おうね\n[04:41.45] ",
+                                        "subtitle_avg_count": 10,
+                                        "lyrics_copyright": "Writer(s): Kodama Saori, Takahiro Yamada\n",
+                                        "subtitle_length": 307,
+                                        "subtitle_language": "ja",
+                                        "subtitle_language_description": "Japanese",
+                                        "script_tracking_url": "https://tracking.musixmatch.com/t1.0/m_js/e_0/sn_0/l_0/su_32040191/rs_0/tr_3vUCABIGw2OTHCTxl09cSzMfatOv4yalPotrMlWyBQp9ToRl4XkC7Bt183xD4n74bDeh_wIXAaQoKbVAthtBKtzHIp2ScmdIUW6XybzfZ7ZrC66DeXEU9B0jxxwWAJxn55Xfb341di1SQ2IeWeWPADXmgma-FZdGYYRI2UrlC19z7p3fAIgfVjrZtweV21E5-XjWZCy__6FHUGld3tPWm9ECUYUS5sXYb9ru5n7PpV34W4r3mKz-6dxvdRb0wU876j6inmzbfG3C_AfWA8iwqAp-HW0xlPMElTkkYE_3aELByo7XDwXFiWhkYWiChlQ6x72PKNcz7iwf7X5MC2RCKMqXM4VYbQfhrrLR6K3W56NqgA-Npnoa1EMLz7s0wpuBgaS7Dz6DgAHwjwcfFzsKjzVMZWvQwV5Sf4IT1Tx6EIl1uy8RkemOVdRXQIY7cTk1FRum0DHrzRVz-942GRS5Ij4d4UtQ3DltXHSr7VatlaMZmyD9Pq1lR4xrH30OxxTvrupzW_bl9vTlA_QcT7OmN46cKjH5Mn0O5-3kn3iim2U34xhh0utfONJijVT7gXECn6ZoFQGQCwbSfvKy5sXV/",
+                                        "pixel_tracking_url": "https://tracking.musixmatch.com/t1.0/m_img/e_0/sn_0/l_0/su_32040191/rs_0/tr_3vUCAMBTHCVfIbWpL7ff8D95LNE4R1i46VocPNWFmLr2rhgZVnouk6YHM8OiQ_r246nK6rjRZ557a56Jnk3cq65O6uSZjqBQ3e06R9JO5Z_68jI5dxZc9k3UbvIo-WFScrvy7JlE2JrC7qeZSJp58yp-go_xO7ahFMXVV_n8cs6OLLKXkpMOOadodc_BuvGXKew5zFI_3ig2OeXivdA_7-aQeI_CPyN2xp7Z1jiVQ-Xl4iZCtdrC9ZLpHS0jLpao2piBuk7wDl-0OvkqDV_gBTCQDCcMgEgayJlaJ-tmLf5m7yi6JVNKcFSZ7sKdszcWKcFQ5BV42lEjvzlKKnLBpV1lH7j1AHzeA4rtRbbU1VuOwDwK4tlIYtP_hI6UUV4lE5pDhOl74STYOZCjudhU64QxRj4U_z_9l217NJl4aU54AtU9gM88qdJEPVazEgZluUVcPQ31HAS08boV8ndNX9F9EXB7gnQDGBoVjBKpV2zT2s2VOfxIMQmExuYsrYOKwCA6v1fHmE6PiqYfg7aR2Tx8XLdTACfMATMTbRZx8qpxvZ0i6nsHlA9Nesy1_VY4LB-3Ev5PpDSpiA-Xm3p7/",
+                                        "html_tracking_url": "https://tracking.musixmatch.com/t1.0/m_html/e_0/sn_0/l_0/su_32040191/rs_0/tr_3vUCAN_bBeS2GC1ldWuGhnO4HiOvESkJh8Xim7J9aEgYHj37YeK6RN_fslMgO1a3qOOlNw_yiN3LWLn23WZeJKI7c4VClVZc0G8AV0NpuFVEo6OsUjbpdUnhsOZM_7kfThrsQmBG6p47wr971Xj42Xswb0sZ2A6ODO_h03CjF-EasAL4Ir1ftk3Xx-izZ270p--CmhI0BJkQtFFPtX7lxcItP2qZQ99lsldixpfKO_-ezQg4Y29yQeVQcIedau-xiWZW4GP16cTZi_Mf84R7Q6U4vLiOO51vK2Mu3bZBWF0NV02ax6cGkyl4dVIpHWqwG5R_hnrNmGj7kWtqRIToP_eFyTUUEpbmWDR08TgcJweiq7BWPvRXqGGa6JXpoqGF14--n4QyHnaWnIUXPrv-WJ_q7vF9Tknfjrjk6P18U-J1Fi0JIq1SXSnORTX_AlwttmV4kJFMFxij4yx8mzGVmN50vH8eFr93nktmHjH_SdG4GGOJ7WGnLtgM7SEAGrl3AdHVKSLX6DhL1-vmGNuWc_vURbsEdvFpuEXsCNqhcGtN2OfnltposkHI_G58iZXR--axSqz-HeH34zX_fYAO/",
+                                        "writer_list": [],
+                                        "publisher_list": [],
+                                        "updated_time": "2020-02-25T13:58:56Z",
+                                        "subtitle_user": {
+                                            "user": {
+                                                "uaid": "3vUCAPnYLjTVvYE_K518gJIoRzRKQeCPuxGXufpD533YYtQrIAz40X4JxpWueDuKy8vnM2EehoRHeQcftWcBiOS3SLe9RX41HR0GZS31jd7glWsjVaRxRWjGoiTPMbc5RGxcXTZXf8JetcjM_xOHfgazK_Q",
+                                                "is_mine": 0,
+                                                "user_name": "Negative Magenta",
+                                                "user_profile_photo": "https://lh3.googleusercontent.com/-cI07G0Zm1Q4/AAAAAAAAAAI/AAAAAAAAA68/AMZuuclL075PUJ3vCQLDj7c8iyHfQe0yIg/s50/photo.jpg",
+                                                "has_private_profile": 0,
+                                                "score": 92322,
+                                                "position": 70,
+                                                "weekly_score": 1077,
+                                                "level": "top",
+                                                "key": "1e2c58ccde5da7586e3ae84e2df52b0ca6d2445dda4ca6faa32765f2e35d2c73",
+                                                "rank_level": 57,
+                                                "points_to_next_level": 1678,
+                                                "ratio_to_next_level": 44.07,
+                                                "rank_name": "hero",
+                                                "next_rank_name": "king",
+                                                "ratio_to_next_rank": 90,
+                                                "rank_color": "AD86FF",
+                                                "rank_colors": {
+                                                    "rank_color_10": "F9EFFF",
+                                                    "rank_color_50": "D2AFFE",
+                                                    "rank_color_100": "AD86FF",
+                                                    "rank_color_200": "8F68E1"
+                                                },
+                                                "rank_image_url": "https://static.musixmatch.com/badges/rank_icons/hero.png",
+                                                "next_rank_color": "D4A34B",
+                                                "next_rank_colors": {
+                                                    "rank_color_10": "FFF4DE",
+                                                    "rank_color_50": "EFCA87",
+                                                    "rank_color_100": "D4A34B",
+                                                    "rank_color_200": "B78436"
+                                                },
+                                                "next_rank_image_url": "https://static.musixmatch.com/badges/rank_icons/king.png",
+                                                "counters": {
+                                                    "lyrics_subtitle_added": 4332,
+                                                    "lyrics_favourite_added": 112,
+                                                    "lyrics_to_add": 2,
+                                                    "track_translation": 541,
+                                                    "lyrics_ai_phrases_not_related_no": 1,
+                                                    "lyrics_missing": 2477,
+                                                    "lyrics_implicitly_ok": 5,
+                                                    "lyrics_changed": 2550,
+                                                    "lyrics_report_completely_wrong": 4,
+                                                    "lyrics_ok": 11311,
+                                                    "lyrics_music_id": 8,
+                                                    "vote_bonuses": 1645,
+                                                    "lyrics_richsync_added": 4,
+                                                    "lyrics_ranking_change": 6543,
+                                                    "lyrics_ai_mood_analysis_v3_value": 70,
+                                                    "lyrics_ai_ugc_language": 67,
+                                                    "evaluation_curator_test": 4,
+                                                    "vote_maluses": 2,
+                                                    "lyrics_ko": 89,
+                                                    "translation_ok": 3,
+                                                    "track_influencer_bonus_moderator_vote": 1,
+                                                    "track_structure": 15064,
+                                                    "track_complete_metadata": 118
+                                                },
+                                                "moderator": true,
+                                                "academy_completed": false
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                },
+                "matcher.track.get": {
+                    "message": {
+                        "header": {
+                            "status_code": 200,
+                            "execute_time": 0.021152019500732,
+                            "confidence": 999,
+                            "mode": "track_spotify_id",
+                            "cached": 0
+                        },
+                        "body": {
+                            "track": {
+                                "track_id": 193689741,
+                                "track_mbid": "",
+                                "track_isrc": "JPW670100115",
+                                "commontrack_isrcs": [["JPW670100115"]],
+                                "track_spotify_id": "6mvnCFHn1d2LyrnnO1C3dw",
+                                "commontrack_spotify_ids": [
+                                    "6mvnCFHn1d2LyrnnO1C3dw"
+                                ],
+                                "track_soundcloud_id": 0,
+                                "track_xboxmusic_id": "",
+                                "track_name": "光の道標",
+                                "track_name_translation_list": [],
+                                "track_rating": 13,
+                                "track_length": 305,
+                                "commontrack_id": 104524332,
+                                "instrumental": 0,
+                                "explicit": 0,
+                                "has_lyrics": 1,
+                                "has_lyrics_crowd": 0,
+                                "has_subtitles": 1,
+                                "has_richsync": 0,
+                                "num_favourite": 5,
+                                "lyrics_id": 21027838,
+                                "subtitle_id": 32040191,
+                                "album_id": 37055211,
+                                "album_name": "yuanfen",
+                                "artist_id": 33647311,
+                                "artist_mbid": "",
+                                "artist_name": "Kano",
+                                "album_coverart_100x100": "https://s.mxmcdn.net/images-storage/albums5/5/2/0/7/7/1/48177025.jpg",
+                                "album_coverart_350x350": "https://s.mxmcdn.net/images-storage/albums5/5/2/0/7/7/1/48177025_350_350.jpg",
+                                "album_coverart_500x500": "https://s.mxmcdn.net/images-storage/albums5/5/2/0/7/7/1/48177025_500_500.jpg",
+                                "album_coverart_800x800": "",
+                                "track_share_url": "https://www.musixmatch.com/lyrics/%E9%B9%BF%E4%B9%83/%E5%85%89%E3%81%AE%E9%81%93%E6%A8%99?utm_source=application&utm_campaign=api&utm_medium=musixmatch%3A1409612667678",
+                                "track_edit_url": "https://www.musixmatch.com/lyrics/%E9%B9%BF%E4%B9%83/%E5%85%89%E3%81%AE%E9%81%93%E6%A8%99/edit?utm_source=application&utm_campaign=api&utm_medium=musixmatch%3A1409612667678",
+                                "commontrack_vanity_id": "鹿乃/光の道標",
+                                "restricted": 0,
+                                "first_release_date": "2019-11-27T00:00:00Z",
+                                "updated_time": "2020-02-25T13:58:56Z",
+                                "primary_genres": {
+                                    "music_genre_list": [
+                                        {
+                                            "music_genre": {
+                                                "music_genre_id": 27,
+                                                "music_genre_parent_id": 34,
+                                                "music_genre_name": "J-Pop",
+                                                "music_genre_name_extended": "J-Pop",
+                                                "music_genre_vanity": "J-Pop"
+                                            }
+                                        }
+                                    ]
+                                },
+                                "secondary_genres": {
+                                    "music_genre_list": [
+                                        {
+                                            "music_genre": {
+                                                "music_genre_id": 34,
+                                                "music_genre_parent_id": 0,
+                                                "music_genre_name": "Music",
+                                                "music_genre_name_extended": "Music",
+                                                "music_genre_vanity": "Music"
+                                            }
+                                        },
+                                        {
+                                            "music_genre": {
+                                                "music_genre_id": 29,
+                                                "music_genre_parent_id": 34,
+                                                "music_genre_name": "Anime",
+                                                "music_genre_name_extended": "Anime",
+                                                "music_genre_vanity": "Anime"
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "userblob.get": {
+                    "message": {
+                        "header": {
+                            "status_code": 404
+                        }
+                    },
+                    "meta": {
+                        "status_code": 404,
+                        "last_updated": "2020-08-12T10:32:24.559Z"
+                    }
+                }
+            }
+        }
+    }
+}

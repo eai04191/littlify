@@ -880,6 +880,11 @@
   resolved "https://registry.yarnpkg.com/@iarna/toml/-/toml-2.2.5.tgz#b32366c89b43c6f8cefbdefac778b9c828e3ba8c"
   integrity sha512-trnsAYxU3xnS1gPHPyU961coFyLkh4gAD/0zQ5mymY4yOZ+CYvsPqUbOFSw0aDM4y0tV7tiFxL/1XfXPNC6IPg==
 
+"@mebtte/react-lrc@^0.2.2":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@mebtte/react-lrc/-/react-lrc-0.2.2.tgz#75502a7f8564d669a710dd8d4ef6ee39baaedb61"
+  integrity sha512-floVIzJT5a1jM5RrZl63qxsYWubigPwqPI0RxW7ODnLP6u0SNRsCC5rAT6hn2WODnUehPMGDUFWtRQw2rGHIWQ==
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"

@@ -6,6 +6,7 @@ import SpotifyURILink from "./SpotifyURILink";
 import Shortcut from "./Shortcut";
 import Controller from "./Controller";
 import Artists from "./Artists";
+import { getLyric, Lyric } from "./Lyric";
 
 interface Props {
     state: Spotify.PlaybackState;
@@ -27,6 +28,9 @@ export default class Player extends React.Component<
     }
 
     render(): JSX.Element {
+        // todo: 非同期で取る
+        const lrc = getLyric(this.props.state);
+        console.log(lrc);
         const state = this.props.state;
         const track = state.track_window.current_track;
         const nextTracks = state.track_window.next_tracks;
@@ -117,6 +121,18 @@ export default class Player extends React.Component<
                                     </SpotifyURILink>
                                 </p>
                             </div>
+                        </div>
+                        <div
+                            className={classNames(
+                                "flex",
+                                "flex-col",
+                                "overflow-y-auto",
+                                // "flex-shrink",
+                                "text-gray-700"
+                            )}
+                            style={{ height: "125px" }}
+                        >
+                            <Lyric lrc={lrc} currentTime={21000} />
                         </div>
                         <Controller
                             state={this.props.state}
